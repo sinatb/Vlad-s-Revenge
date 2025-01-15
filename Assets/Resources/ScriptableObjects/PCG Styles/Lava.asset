@@ -18,9 +18,5 @@ MonoBehaviour:
   - {fileID: 4013795370804996270, guid: 859d7c6c14b163244be2a651982c8e92, type: 3}
   - {fileID: 171821242756546253, guid: e4fc85417bd82c34aaec3e3ac89161be, type: 3}
   floorPrefab:
-  - {fileID: 4050895172437237571, guid: 3915246a7a7c7324faa516caa6176bbd, type: 3}
-  - {fileID: 4277127981226890062, guid: 2bcf05354f9c8824da21e8506d785f82, type: 3}
   - {fileID: 7503257931940888040, guid: 11d83faf7669db34e8d5814e239a3e7a, type: 3}
   - {fileID: 1200168338323737833, guid: 63aa16f09e45d7a468b861da2d5154b2, type: 3}
-  - {fileID: 1212574944675925499, guid: 7a8e1e3ed7cf99048afe5b4de7189455, type: 3}
-  - {fileID: 5209501660165868335, guid: db18d4ea81f561749bae6f37c1df7dff, type: 3}

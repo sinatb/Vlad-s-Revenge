@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Difficulty;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,7 +10,9 @@ namespace PCG
     {
         public GameObject      roomPrefab;
         public GeneratorParams gp;
-
+        public LevelDifficulty levelDifficulty;
+        
+        
         public List<Room> GenerateRooms()
         {
             var rooms = new List<Room>();
@@ -26,7 +29,8 @@ namespace PCG
             grid = Util.ApplyRules(grid, gp.ruleIterations);
             var r = Instantiate(roomPrefab).GetComponent<Room>();
             var style = Util.GetRandomItem(gp.styles);
-            r.Init(grid, style);
+            var difficulty = Util.GetRandomItem(levelDifficulty.settings).difficulty;
+            r.Init(grid, style,difficulty);
             return r;
         }
     }

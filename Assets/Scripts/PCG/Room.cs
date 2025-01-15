@@ -1,3 +1,4 @@
+using Difficulty;
 using UnityEngine;
 
 namespace PCG
@@ -5,14 +6,16 @@ namespace PCG
     public class Room : MonoBehaviour
     {
         // ReSharper disable once MemberCanBePrivate.Global
-        public int[,]         Grid { get; private set; }
-        private PcgStyle      _style;      
-        private bool          _isActive;
+        public int[,]              Grid { get; private set; }
+        private PcgStyle           _style;      
+        private bool               _isActive;
+        private DifficultySettings _difficulty;
 
-        public void Init(int[,] grid, PcgStyle style)
+        public void Init(int[,] grid, PcgStyle style, DifficultySettings difficulty)
         {
             Grid = (int[,]) grid.Clone();
             _style = style;
+            _difficulty = difficulty;
         }
         private void VisualizeGrid()
         {

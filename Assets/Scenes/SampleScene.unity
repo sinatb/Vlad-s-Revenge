@@ -417,6 +417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomPrefab: {fileID: 4915224375607141039, guid: 0b9c6171dd6514249958c4b80880b125, type: 3}
   gp: {fileID: 11400000, guid: a5cb6cbbcad1fc74ba45685de2d493c7, type: 2}
+  levelDifficulty: {fileID: 11400000, guid: 129380dcd8e06c74f88a33296c82d063, type: 2}
 --- !u!4 &1900008282
 Transform:
   m_ObjectHideFlags: 0
