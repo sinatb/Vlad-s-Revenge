@@ -1,12 +1,14 @@
 ﻿using PCG;
+using Pools;
 using UnityEngine;
 
 namespace Managers
 {
     public class GameManager : MonoBehaviour
     {
-        public int       level;
-        public Generator generator;
+        public int        level;
+        public Generator  generator;
+        public ObjectPool enemies;
         private static GameManager _instance;
         public static GameManager Instance => _instance;
 

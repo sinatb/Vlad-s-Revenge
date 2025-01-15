@@ -1,5 +1,7 @@
 using Difficulty;
+using Managers;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace PCG
 {
@@ -42,11 +44,40 @@ namespace PCG
                 }
             }
         }
-        
+
+        private Vector3 GetRandomFloor()
+        {
+            var x = Random.Range(0,Grid.GetLength(0));
+            var y = Random.Range(0,Grid.GetLength(1));
+            while (Grid[y, x] != 1)
+            {
+                y = Random.Range(0,Grid.GetLength(1));
+                x = Random.Range(0, Grid.GetLength(0));
+            }
+
+            return new Vector3(
+                x - (float)Grid.GetLength(0) / 2,
+                y - (float)Grid.GetLength(1) / 2,
+                0
+            );
+        }
+        private void PlaceEnemies()
+        {
+            foreach (var v in _difficulty.enemies)
+            {
+                for (var i = 0; i < _difficulty.GetCount(v.enemy); i++)
+                {
+                    var e = GameManager.Instance.enemies.GetPooledObject(v.enemy.enemyName);
+                    e.SetActive(true);
+                    e.transform.position = GetRandomFloor();
+                }
+            }
+        }
         public void Activate()
         {
             if (_isActive) return;
             VisualizeGrid();
+            PlaceEnemies();
             _isActive = true;
         }
     }
