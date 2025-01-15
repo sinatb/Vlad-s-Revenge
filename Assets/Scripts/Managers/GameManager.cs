@@ -1,4 +1,5 @@
-﻿using PCG;
+﻿using System.Collections.Generic;
+using PCG;
 using Pools;
 using UnityEngine;
 
@@ -9,9 +10,16 @@ namespace Managers
         public int        level;
         public Generator  generator;
         public ObjectPool enemies;
+        public GameObject stylePoolPrefab;
         private static GameManager _instance;
+        
         public static GameManager Instance => _instance;
-
+        public List<StylePool> styles;
+        
+        public static StylePool GetStylePool(PcgStyle style)
+        {
+            return _instance.styles.Find(s => s.style == style);
+        }
         private void Awake()
         {
             if (_instance == null)
@@ -23,6 +31,7 @@ namespace Managers
             {
                 Destroy(gameObject);
             }
+
         }
         private void Start()
         {

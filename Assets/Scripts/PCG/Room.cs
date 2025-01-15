@@ -29,17 +29,15 @@ namespace PCG
                 {
                     if (Grid[i, j] == 1)
                     {
-                        var prefab = Util.GetRandomItem(_style.floorPrefab);
-                        Instantiate(prefab,
-                            new Vector3(j - (float)width/2, i - (float)width/2, 0),
-                            Quaternion.identity);
+                        var prefab = GameManager.GetStylePool(_style).GetRandomFloor();
+                        prefab.SetActive(true);
+                        prefab.transform.position = new Vector3(j - (float)width / 2, i - (float)width / 2, 0);
                     }
                     else
                     {
-                        var prefab = Util.GetRandomItem(_style.wallPrefab);
-                        Instantiate(prefab, 
-                            new Vector3(j - (float)width/2, i - (float)width/2, 0),
-                            Quaternion.identity);
+                        var prefab = GameManager.GetStylePool(_style).GetRandomWall();
+                        prefab.SetActive(true);
+                        prefab.transform.position = new Vector3(j - (float)width / 2, i - (float)width / 2, 0);
                     }
                 }
             }

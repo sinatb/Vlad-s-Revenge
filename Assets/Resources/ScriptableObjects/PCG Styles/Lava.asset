@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87d9c45227294e1bb5776fa305391d8f, type: 3}
   m_Name: Lava
   m_EditorClassIdentifier: 
+  styleName: Lava
   wallPrefab:
   - {fileID: 5552123056098157784, guid: f3137ed82548fb84292c6ee4cff3cee3, type: 3}
   - {fileID: 3188892328835296472, guid: 67b724128a63558419dba60d00e8d7e2, type: 3}

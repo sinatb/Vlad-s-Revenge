@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87d9c45227294e1bb5776fa305391d8f, type: 3}
   m_Name: Dungeon
   m_EditorClassIdentifier: 
+  styleName: Dungeon
   wallPrefab:
   - {fileID: 8059366259145456193, guid: e50326261fcd8ad49855e06591e9f1e2, type: 3}
   - {fileID: 7604956423540684660, guid: 5f41bf919536590439e69f91419d0e87, type: 3}
