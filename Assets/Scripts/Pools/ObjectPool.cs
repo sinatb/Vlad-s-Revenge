@@ -24,7 +24,7 @@ namespace Pools
                 var l = new List<GameObject>();
                 for (var i = 0; i < count; i++)
                 {
-                    var o = Instantiate(pair.obj);
+                    var o = Instantiate(pair.obj,transform);
                     o.SetActive(false);
                     l.Add(o);
                 }
