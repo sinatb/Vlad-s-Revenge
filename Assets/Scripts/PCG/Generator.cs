@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Difficulty;
@@ -11,8 +12,28 @@ namespace PCG
         public GameObject      roomPrefab;
         public GeneratorParams gp;
         public LevelDifficulty levelDifficulty;
-        
-        
+
+        private Dictionary<DifficultySettings,int> _difficultyCount;
+
+        private void Awake()
+        {
+            _difficultyCount = new Dictionary<DifficultySettings, int>();
+            foreach (var setting in levelDifficulty.settings)
+            {
+                _difficultyCount.Add(setting.difficulty, setting.count);
+            }
+        }
+
+        private DifficultySettings GetRandomSetting()
+        {
+            var difficulty = Util.GetRandomItem(levelDifficulty.settings).difficulty;
+            while(_difficultyCount[difficulty] == 0)
+            {
+                difficulty = Util.GetRandomItem(levelDifficulty.settings).difficulty;
+            }
+            _difficultyCount[difficulty]--;
+            return difficulty;
+        }
         public List<Room> GenerateRooms()
         {
             var rooms = new List<Room>();
@@ -29,7 +50,7 @@ namespace PCG
             grid = Util.ApplyRules(grid, gp.ruleIterations);
             var r = Instantiate(roomPrefab).GetComponent<Room>();
             var style = Util.GetRandomItem(gp.styles);
-            var difficulty = Util.GetRandomItem(levelDifficulty.settings).difficulty;
+            var difficulty = GetRandomSetting();
             r.Init(grid, style,difficulty);
             return r;
         }
