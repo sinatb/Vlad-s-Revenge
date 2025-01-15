@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd22e0185e20994d833f30fdfe06c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gp: {fileID: 11400000, guid: a5cb6cbbcad1fc74ba45685de2d493c7, type: 2}
+  roomPrefab: {fileID: 4915224375607141039, guid: 0b9c6171dd6514249958c4b80880b125, type: 3}
 --- !u!4 &1900008282
 Transform:
   m_ObjectHideFlags: 0

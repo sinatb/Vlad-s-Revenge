@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87d9c45227294e1bb5776fa305391d8f, type: 3}
+  m_Name: Lava
+  m_EditorClassIdentifier: 
+  wallPrefab:
+  - {fileID: 5552123056098157784, guid: f3137ed82548fb84292c6ee4cff3cee3, type: 3}
+  - {fileID: 3188892328835296472, guid: 67b724128a63558419dba60d00e8d7e2, type: 3}
+  - {fileID: 4013795370804996270, guid: 859d7c6c14b163244be2a651982c8e92, type: 3}
+  - {fileID: 171821242756546253, guid: e4fc85417bd82c34aaec3e3ac89161be, type: 3}
+  floorPrefab:
+  - {fileID: 4050895172437237571, guid: 3915246a7a7c7324faa516caa6176bbd, type: 3}
+  - {fileID: 4277127981226890062, guid: 2bcf05354f9c8824da21e8506d785f82, type: 3}
+  - {fileID: 5209501660165868335, guid: db18d4ea81f561749bae6f37c1df7dff, type: 3}
+  - {fileID: 7503257931940888040, guid: 11d83faf7669db34e8d5814e239a3e7a, type: 3}
+  - {fileID: 1200168338323737833, guid: 63aa16f09e45d7a468b861da2d5154b2, type: 3}
+  - {fileID: 1212574944675925499, guid: 7a8e1e3ed7cf99048afe5b4de7189455, type: 3}
+  - {fileID: 3792934537605786368, guid: 32fcef89618966f47b2a173e30740d4d, type: 3}
+  - {fileID: 7049465250203669267, guid: 6eed2c05f3a3f294a927d83cb47c83c1, type: 3}

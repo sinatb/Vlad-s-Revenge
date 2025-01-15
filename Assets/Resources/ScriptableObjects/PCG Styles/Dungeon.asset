@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91c2c9c80fab18945a16195f508c83f7, type: 3}
-  m_Name: Default
+  m_Script: {fileID: 11500000, guid: 87d9c45227294e1bb5776fa305391d8f, type: 3}
+  m_Name: Dungeon
   m_EditorClassIdentifier: 
   wallPrefab:
   - {fileID: 8059366259145456193, guid: e50326261fcd8ad49855e06591e9f1e2, type: 3}
@@ -20,8 +20,3 @@ MonoBehaviour:
   - {fileID: 3365790843520284305, guid: 93964d42822a3ae4abccf33073945ab2, type: 3}
   - {fileID: 3638839907267976691, guid: 60a7de39de5a9b142af5699cd79206d7, type: 3}
   - {fileID: 7366244928947855336, guid: 576840220da57b545b4ef0e9741acc28, type: 3}
-  roomWidth: 30
-  roomHeight: 30
-  roomDensity: 70
-  ruleIterations: 10
-  numRooms: 5
