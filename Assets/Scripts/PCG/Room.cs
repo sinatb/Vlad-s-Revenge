@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Difficulty;
 using Managers;
 using UnityEngine;
@@ -12,12 +13,14 @@ namespace PCG
         private PcgStyle           _style;      
         private bool               _isActive;
         private DifficultySettings _difficulty;
-
+        private List<GameObject> _usedTiles;
+ 
         public void Init(int[,] grid, PcgStyle style, DifficultySettings difficulty)
         {
             Grid = (int[,]) grid.Clone();
             _style = style;
             _difficulty = difficulty;
+            _usedTiles = new List<GameObject>();
         }
         private void VisualizeGrid()
         {
@@ -32,12 +35,14 @@ namespace PCG
                         var prefab = GameManager.GetStylePool(_style).GetRandomFloor();
                         prefab.SetActive(true);
                         prefab.transform.position = new Vector3(j - (float)width / 2, i - (float)width / 2, 0);
+                        _usedTiles.Add(prefab);
                     }
                     else
                     {
                         var prefab = GameManager.GetStylePool(_style).GetRandomWall();
                         prefab.SetActive(true);
                         prefab.transform.position = new Vector3(j - (float)width / 2, i - (float)width / 2, 0);
+                        _usedTiles.Add(prefab);
                     }
                 }
             }
@@ -68,6 +73,7 @@ namespace PCG
                     var e = GameManager.Instance.enemies.GetPooledObject(v.enemy.enemyName);
                     e.SetActive(true);
                     e.transform.position = GetRandomFloor();
+                    _usedTiles.Add(e);
                 }
             }
         }
@@ -77,6 +83,15 @@ namespace PCG
             VisualizeGrid();
             PlaceEnemies();
             _isActive = true;
+        }
+
+        public void Deactivate()
+        {
+            foreach (var t in _usedTiles)
+            {
+                t.SetActive(false);
+            }
+            _isActive = false;
         }
     }
 }
