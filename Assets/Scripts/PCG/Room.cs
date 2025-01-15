@@ -5,10 +5,10 @@ namespace PCG
     public class Room : MonoBehaviour
     {
         public int[,]         Grid { get; private set; }
-        
+        private PcgStyle      _style;      
         private bool          _isActive;
 
-        public void Init(int[,] grid)
+        public void Init(int[,] grid, PcgStyle style)
         {
             Grid = (int[,]) grid.Clone();
         }
@@ -22,17 +22,17 @@ namespace PCG
                 {
                     if (grid[i, j] == 1)
                     {
-                        // var prefab = Util.GetRandomPrefab(_gp.floorPrefab);
-                        // Instantiate(prefab,
-                        //     new Vector3(j - (float)width/2, i - (float)width/2, 0),
-                        //     Quaternion.identity);
+                        var prefab = Util.GetRandomItem(_style.floorPrefab);
+                        Instantiate(prefab,
+                            new Vector3(j - (float)width/2, i - (float)width/2, 0),
+                            Quaternion.identity);
                     }
                     else
                     {
-                        // var prefab = Util.GetRandomPrefab(_gp.wallPrefab);
-                        // Instantiate(prefab, 
-                        //     new Vector3(j - (float)width/2, i - (float)width/2, 0),
-                        //     Quaternion.identity);
+                        var prefab = Util.GetRandomItem(_style.wallPrefab);
+                        Instantiate(prefab, 
+                            new Vector3(j - (float)width/2, i - (float)width/2, 0),
+                            Quaternion.identity);
                     }
                 }
             }

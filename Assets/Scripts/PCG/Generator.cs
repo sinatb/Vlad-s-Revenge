@@ -28,7 +28,8 @@ namespace PCG
             var grid = Util.GenerateNoiseGrid(_gp.roomWidth, _gp.roomHeight, _gp.roomDensity);
             grid = Util.ApplyRules(grid, _gp.ruleIterations);
             var r = Instantiate(roomPrefab).GetComponent<Room>();
-            r.Init(grid);
+            var style = Util.GetRandomItem(_gp.styles);
+            r.Init(grid, style);
             return r;
         }
     }

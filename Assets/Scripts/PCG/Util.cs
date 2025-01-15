@@ -39,7 +39,7 @@ namespace PCG
             return updatedGrid;
         }
 
-        public static GameObject GetRandomPrefab(List<GameObject> objects)
+        public static T GetRandomItem<T>(List<T> objects)
         {
             return objects[Random.Range(0, objects.Count)];
         }

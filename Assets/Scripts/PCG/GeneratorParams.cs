@@ -7,8 +7,7 @@ namespace PCG
     public class GeneratorParams : ScriptableObject
     {
         //Creation prefabs
-        public List<GameObject> wallPrefab;
-        public List<GameObject> floorPrefab;
+        public List<PcgStyle>   styles;
 
         public int              roomWidth;
         public int              roomHeight;
