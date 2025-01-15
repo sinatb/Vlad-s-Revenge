@@ -4,6 +4,7 @@ namespace PCG
 {
     public class Room : MonoBehaviour
     {
+        // ReSharper disable once MemberCanBePrivate.Global
         public int[,]         Grid { get; private set; }
         private PcgStyle      _style;      
         private bool          _isActive;
@@ -11,16 +12,17 @@ namespace PCG
         public void Init(int[,] grid, PcgStyle style)
         {
             Grid = (int[,]) grid.Clone();
+            _style = style;
         }
-        private void VisualizeGrid(int[,] grid)
+        private void VisualizeGrid()
         {
-            var width = grid.GetLength(0);
-            var height = grid.GetLength(1);
+            var width = Grid.GetLength(0);
+            var height = Grid.GetLength(1);
             for (var i=0; i < height; i++)
             {
                 for (var j=0; j < width; j++)
                 {
-                    if (grid[i, j] == 1)
+                    if (Grid[i, j] == 1)
                     {
                         var prefab = Util.GetRandomItem(_style.floorPrefab);
                         Instantiate(prefab,
@@ -38,5 +40,11 @@ namespace PCG
             }
         }
         
+        public void Activate()
+        {
+            if (_isActive) return;
+            VisualizeGrid();
+            _isActive = true;
+        }
     }
 }

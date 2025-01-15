@@ -1,22 +1,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace PCG
 {
     public class Generator : MonoBehaviour
     {
         public GameObject      roomPrefab;
-        private GeneratorParams _gp;
-        public void SetParams(GeneratorParams gp)
-        {
-            _gp = gp;
-        }
+        public GeneratorParams gp;
 
         public List<Room> GenerateRooms()
         {
             var rooms = new List<Room>();
-            for (var i=0; i<_gp.numRooms; i++)
+            for (var i=0; i<gp.numRooms; i++)
             { 
                 rooms.Add(GenerateRoom());
             }
@@ -25,10 +22,10 @@ namespace PCG
 
         private Room GenerateRoom()
         {
-            var grid = Util.GenerateNoiseGrid(_gp.roomWidth, _gp.roomHeight, _gp.roomDensity);
-            grid = Util.ApplyRules(grid, _gp.ruleIterations);
+            var grid = Util.GenerateNoiseGrid(gp.roomWidth, gp.roomHeight, gp.roomDensity);
+            grid = Util.ApplyRules(grid, gp.ruleIterations);
             var r = Instantiate(roomPrefab).GetComponent<Room>();
-            var style = Util.GetRandomItem(_gp.styles);
+            var style = Util.GetRandomItem(gp.styles);
             r.Init(grid, style);
             return r;
         }

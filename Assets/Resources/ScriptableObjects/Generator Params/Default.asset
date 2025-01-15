@@ -15,7 +15,6 @@ MonoBehaviour:
   styles:
   - {fileID: 11400000, guid: 92bdff2cd1790794e8e65da777f3a9c6, type: 2}
   - {fileID: 11400000, guid: 2859e7aa1c76e8a41b489137847ebcfa, type: 2}
-  - {fileID: 11400000, guid: b271da92fc428a8429dbc8cd2a467662, type: 2}
   roomWidth: 30
   roomHeight: 30
   roomDensity: 70
