@@ -7,12 +7,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c954dd99aec40b14f93f402e0b0915e6, type: 3}
   m_Name: Medium
   m_EditorClassIdentifier: 
-  baseWarriorCount: 8
-  baseArcherCount: 3
-  baseCenturionCount: 0
+  enemies:
+  - enemy: {fileID: 11400000, guid: 40c5302eacee1cf449e1ed9dfd702f44, type: 2}
+    count: 8
+    hasDdl: 1
+  - enemy: {fileID: 11400000, guid: b7a77bc4bea37da4b8fee702b92bea78, type: 2}
+    count: 3
+    hasDdl: 1
+  - enemy: {fileID: 11400000, guid: a9e9d409fa93a9749b6f40a41e0fefad, type: 2}
+    count: 0
+    hasDdl: 1
   difficultyLevel: 2

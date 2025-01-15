@@ -1,23 +1,45 @@
 using System;
+using System.Collections.Generic;
+using Enemies;
 using Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Difficulty
 {
+    [Serializable]
+    public class EnemyCountPair
+    {
+        public EnemyData enemy;
+        public int       count;
+        public bool      hasDdl;
+    }
     [CreateAssetMenu(fileName = "Difficulty Settings", menuName = "Difficulty/DifficultySettings")]
     public class DifficultySettings : ScriptableObject
     {
-        public int baseWarriorCount;
-        public int baseArcherCount;
-        public int baseCenturionCount;
-        public int difficultyLevel;
-        public int Ddl { get; private set;}
+        public List<EnemyCountPair> enemies;
+        public int                  difficultyLevel;
+        private int                 _ddl;
 
         private void Awake()
         {
             var level = GameManager.Instance.level;
-            Ddl = Random.Range(0,difficultyLevel)+level/2;
+            _ddl = Random.Range(0,difficultyLevel)+level/2;
+        }
+
+        public int GetCount(EnemyData e)
+        {
+            foreach (var v in enemies)
+            {
+                if (v.enemy != e)
+                 continue;
+                if (v.hasDdl)
+                {
+                    return v.count + _ddl;
+                }
+                return v.count;
+            }
+            return 0;
         }
     }
 }
