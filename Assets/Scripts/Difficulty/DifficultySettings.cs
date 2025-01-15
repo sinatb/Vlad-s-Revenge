@@ -21,7 +21,7 @@ namespace Difficulty
         public int                  difficultyLevel;
         private int                 _ddl;
 
-        private void Awake()
+        public void Setup()
         {
             var level = GameManager.Instance.level;
             _ddl = Random.Range(0,difficultyLevel)+level/2;

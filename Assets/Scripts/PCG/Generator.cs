@@ -22,8 +22,15 @@ namespace PCG
             {
                 _difficultyCount.Add(setting.difficulty, setting.count);
             }
+            ResetDdl();   
         }
-
+        public void ResetDdl()
+        {
+            foreach (var s in levelDifficulty.settings)
+            {
+                s.difficulty.Setup();
+            }
+        }
         private DifficultySettings GetRandomSetting()
         {
             var difficulty = Util.GetRandomItem(levelDifficulty.settings).difficulty;
@@ -43,7 +50,6 @@ namespace PCG
             }
             return rooms;
         }
-
         private Room GenerateRoom()
         {
             var grid = Util.GenerateNoiseGrid(gp.roomWidth, gp.roomHeight, gp.roomDensity);
