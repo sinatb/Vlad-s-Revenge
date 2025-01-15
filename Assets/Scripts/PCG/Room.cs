@@ -1,20 +1,42 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace PCG
 {
     public class Room : MonoBehaviour
     {
-        private Vector2Int       _centerPosition;
-        private int              _width;
-        private int              _height;
-        private List<GameObject> _elements;
+        public int[,]         Grid { get; private set; }
+        
+        private bool          _isActive;
 
-        public void Init(Vector2Int centerPosition, int width, int height)
+        public void Init(int[,] grid)
         {
-            _centerPosition = centerPosition;
-            _width = width;
-            _height = height;
+            Grid = (int[,]) grid.Clone();
         }
+        private void VisualizeGrid(int[,] grid)
+        {
+            var width = grid.GetLength(0);
+            var height = grid.GetLength(1);
+            for (var i=0; i < height; i++)
+            {
+                for (var j=0; j < width; j++)
+                {
+                    if (grid[i, j] == 1)
+                    {
+                        // var prefab = Util.GetRandomPrefab(_gp.floorPrefab);
+                        // Instantiate(prefab,
+                        //     new Vector3(j - (float)width/2, i - (float)width/2, 0),
+                        //     Quaternion.identity);
+                    }
+                    else
+                    {
+                        // var prefab = Util.GetRandomPrefab(_gp.wallPrefab);
+                        // Instantiate(prefab, 
+                        //     new Vector3(j - (float)width/2, i - (float)width/2, 0),
+                        //     Quaternion.identity);
+                    }
+                }
+            }
+        }
+        
     }
 }
