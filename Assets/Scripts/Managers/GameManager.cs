@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using PCG;
 using Pools;
@@ -12,7 +13,6 @@ namespace Managers
         public int        room;
         public Generator  generator;
         public ObjectPool enemies;
-        public GameObject stylePoolPrefab;
         private static GameManager _instance;
         private List<Room> _rooms;
         
@@ -36,8 +36,11 @@ namespace Managers
             }
 
         }
-        private void Start()
+        private IEnumerator Start()
         {
+            
+            yield return new WaitUntil(() => styles.TrueForAll(s=>s.isReady) &&
+                                             enemies.isReady);
             level = 1;
             room = 0;
             _rooms = generator.GenerateRooms();

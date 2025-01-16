@@ -14,7 +14,9 @@ namespace Pools
     {
         public List<StringObjectPair>               prefabs;
         public int                                  count;
+        public bool                                 isReady;
         private Dictionary<string,List<GameObject>> _pool;
+        
 
         private void Awake()
         {
@@ -30,6 +32,7 @@ namespace Pools
                 }
                 _pool.Add(pair.key, l);
             }
+            isReady = true;
         }
         public GameObject GetPooledObject(string key)
         {

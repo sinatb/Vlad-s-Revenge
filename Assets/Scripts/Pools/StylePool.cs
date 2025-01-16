@@ -9,6 +9,7 @@ namespace Pools
     {
         public PcgStyle          style;
         public int               count;
+        public bool              isReady;
         private readonly List<GameObject> _wallPool = new List<GameObject>();
         private readonly List<GameObject> _floorPool = new List<GameObject>();
         private void Start()
@@ -31,6 +32,7 @@ namespace Pools
                     _floorPool.Add(go);
                 }        
             }
+            isReady = true;
         }
         public GameObject GetRandomWall()
         {
