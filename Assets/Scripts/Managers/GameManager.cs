@@ -39,14 +39,15 @@ namespace Managers
         }
         private IEnumerator LoadNextRoom()
         {
-            room++;
             UIManager.ShowRoomLoadScreen();
             while (!LoadTrigger)
             {
                 yield return null;
             }
-            _rooms[room - 1].Deactivate();
+            if (room - 1 >= 0)
+                _rooms[room - 1].Deactivate();
             _rooms[room].Activate();
+            room++;
             LoadTrigger = false;
         }
         private IEnumerator Start()
@@ -57,14 +58,14 @@ namespace Managers
             level = 1;
             room = 0;
             _rooms = generator.GenerateRooms();
-            _rooms[0].Activate();
+            StartCoroutine(LoadNextRoom());
         }
 
         private void Update()
         {
-            if (Input.GetKeyUp(KeyCode.D))
+            if (Input.GetKeyUp(KeyCode.D) && !UIManager.IsInLoad)
             {
-                if (room < 4)
+                if (room < 5)
                 {
                     StartCoroutine(LoadNextRoom());
                 }

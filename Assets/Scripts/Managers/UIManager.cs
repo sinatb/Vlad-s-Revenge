@@ -6,6 +6,7 @@ namespace Managers
     public class UIManager : MonoBehaviour
     {
         [SerializeField] private GameObject      loadScreen;
+        public static bool IsInLoad;
         private static UIManager _instance;
         public static UIManager Instance => _instance;
         
@@ -24,12 +25,14 @@ namespace Managers
 
         public static void ShowRoomLoadScreen()
         {
+            IsInLoad = true;
             _instance.loadScreen.SetActive(true);
             _instance.loadScreen.GetComponent<LoadScreenManager>().SetLoadScreen();
         }
         public static void HideRoomLoadScreen()
         {
             _instance.loadScreen.SetActive(false);
+            IsInLoad = false;
         }
 
     }
