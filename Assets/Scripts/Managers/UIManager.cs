@@ -7,6 +7,7 @@ namespace Managers
     {
         [SerializeField] private GameObject      loadScreen;
         public static bool IsInLoad;
+        public static bool IsInPerkSelect;
         private static UIManager _instance;
         public static UIManager Instance => _instance;
         
@@ -28,6 +29,13 @@ namespace Managers
             IsInLoad = true;
             _instance.loadScreen.SetActive(true);
             _instance.loadScreen.GetComponent<LoadScreenManager>().SetLoadScreen();
+        }
+        public static void ShowLevelLoadScreen()
+        {
+            IsInLoad = true;
+            IsInPerkSelect = true;
+            _instance.loadScreen.SetActive(true);
+            _instance.loadScreen.GetComponent<LoadScreenManager>().SetLevelLoadScreen();
         }
         public static void HideRoomLoadScreen()
         {

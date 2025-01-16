@@ -36,7 +36,28 @@ namespace Managers
             {
                 Destroy(gameObject);
             }
+        }
 
+        private IEnumerator LoadNextLevel()
+        {
+            UIManager.ShowLevelLoadScreen();
+            level++;
+            room = 0;
+            _rooms = generator.GenerateRooms();
+            while (!LoadTrigger)
+            {
+                yield return null;
+            }
+            ActiveRoom.Deactivate();
+            ActiveRoom = _rooms[room];
+            ActiveRoom.Activate();
+            room++;
+            while (UIManager.IsInPerkSelect)
+            {
+                yield return null;
+            }
+
+            LoadTrigger = false;
         }
         private IEnumerator LoadNextRoom()
         {
@@ -73,10 +94,7 @@ namespace Managers
                 }
                 else
                 {
-                    level++;
-                    room = 0;
-                    _rooms = generator.GenerateRooms();
-                    StartCoroutine(LoadNextRoom());
+                    StartCoroutine(LoadNextLevel());
                 }
             }
         }
