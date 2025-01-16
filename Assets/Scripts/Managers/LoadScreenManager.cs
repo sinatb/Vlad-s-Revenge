@@ -7,12 +7,13 @@ namespace Managers
     {
         [SerializeField] private GameObject      defaultLoadScreen;
         [SerializeField] private GameObject      levelLoadScreen;
+        [SerializeField] private TextMeshProUGUI levelCompleteText;
         [SerializeField] private TextMeshProUGUI roomText;
         [SerializeField] private TextMeshProUGUI levelText;
         private Animator _animator;
 
 
-        public void SetLoadScreen()
+        public void SetupLoadScreen()
         {
             defaultLoadScreen.SetActive(true);
             
@@ -24,13 +25,13 @@ namespace Managers
             levelText.text = "Level " + GameManager.Instance.level;
         }
 
-        public void SetLevelLoadScreen()
+        public void SetupLevelLoadScreen()
         {
             levelLoadScreen.SetActive(true);
             
             if (_animator == null)
                 _animator = GetComponent<Animator>();
-         
+            levelCompleteText.text = "Level " + GameManager.Instance.level + " Complete!";
             _animator.SetBool("StartLevelFade", true);
         }
 

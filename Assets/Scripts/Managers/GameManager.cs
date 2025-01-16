@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using PCG;
 using Pools;
@@ -9,17 +8,19 @@ namespace Managers
 {
     public class GameManager : MonoBehaviour
     {
-        public int        level;
-        public int        room;
-        public Generator  generator;
-        public ObjectPool enemies;
-        private static GameManager _instance;
-        private List<Room> _rooms;
+        public int                 level;
+        public int                 room;
+        public Generator           generator;
+        public ObjectPool          enemies;
+        public List<StylePool>     styles;
+
+        
         public Room ActiveRoom { get; private set; }
         public bool LoadTrigger { private get;  set; }
-        
         public static GameManager Instance => _instance;
-        public List<StylePool> styles;
+        private static GameManager _instance;
+        
+        private List<Room>         _rooms;
         
         public static StylePool GetStylePool(PcgStyle style)
         {
@@ -44,30 +45,19 @@ namespace Managers
             level++;
             room = 0;
             _rooms = generator.GenerateRooms();
-            while (!LoadTrigger)
-            {
-                yield return null;
-            }
-            ActiveRoom.Deactivate();
+            yield return new WaitUntil(() => LoadTrigger);
+            ActiveRoom?.Deactivate();
             ActiveRoom = _rooms[room];
             ActiveRoom.Activate();
             room++;
-            while (UIManager.IsInPerkSelect)
-            {
-                yield return null;
-            }
-
+            yield return new WaitUntil(() => !UIManager.IsInPerkSelect);
             LoadTrigger = false;
         }
         private IEnumerator LoadNextRoom()
         {
             UIManager.ShowRoomLoadScreen();
-            while (!LoadTrigger)
-            {
-                yield return null;
-            }
-            if (ActiveRoom !=null)
-                ActiveRoom.Deactivate();
+            yield return new WaitUntil(() => LoadTrigger);
+            ActiveRoom?.Deactivate();
             ActiveRoom = _rooms[room];
             ActiveRoom.Activate();
             room++;
@@ -88,14 +78,7 @@ namespace Managers
         {
             if (Input.GetKeyUp(KeyCode.D) && !UIManager.IsInLoad)
             {
-                if (room < 5)
-                {
-                    StartCoroutine(LoadNextRoom());
-                }
-                else
-                {
-                    StartCoroutine(LoadNextLevel());
-                }
+                StartCoroutine(room < 5 ? LoadNextRoom() : LoadNextLevel());
             }
         }
     }

@@ -28,14 +28,14 @@ namespace Managers
         {
             IsInLoad = true;
             _instance.loadScreen.SetActive(true);
-            _instance.loadScreen.GetComponent<LoadScreenManager>().SetLoadScreen();
+            _instance.loadScreen.GetComponent<LoadScreenManager>().SetupLoadScreen();
         }
         public static void ShowLevelLoadScreen()
         {
             IsInLoad = true;
             IsInPerkSelect = true;
             _instance.loadScreen.SetActive(true);
-            _instance.loadScreen.GetComponent<LoadScreenManager>().SetLevelLoadScreen();
+            _instance.loadScreen.GetComponent<LoadScreenManager>().SetupLevelLoadScreen();
         }
         public static void HideRoomLoadScreen()
         {
