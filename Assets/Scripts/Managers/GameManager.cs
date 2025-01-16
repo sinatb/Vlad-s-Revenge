@@ -15,6 +15,7 @@ namespace Managers
         public ObjectPool enemies;
         private static GameManager _instance;
         private List<Room> _rooms;
+        public bool LoadTrigger { private get;  set; }
         
         public static GameManager Instance => _instance;
         public List<StylePool> styles;
@@ -36,6 +37,18 @@ namespace Managers
             }
 
         }
+        private IEnumerator LoadNextRoom()
+        {
+            room++;
+            UIManager.ShowRoomLoadScreen();
+            while (!LoadTrigger)
+            {
+                yield return null;
+            }
+            _rooms[room - 1].Deactivate();
+            _rooms[room].Activate();
+            LoadTrigger = false;
+        }
         private IEnumerator Start()
         {
             
@@ -51,9 +64,10 @@ namespace Managers
         {
             if (Input.GetKeyUp(KeyCode.D))
             {
-                room++;
-                _rooms[room-1].Deactivate();
-                _rooms[room].Activate();
+                if (room < 4)
+                {
+                    StartCoroutine(LoadNextRoom());
+                }
             }
         }
     }

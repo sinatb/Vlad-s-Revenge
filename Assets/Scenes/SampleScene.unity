@@ -531,6 +531,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 295981725}
+  - component: {fileID: 295981726}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -547,12 +548,25 @@ Transform:
   m_GameObject: {fileID: 295981724}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.794276, y: -0.4451192, z: -0.023766238}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &295981726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295981724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f28019be630fd1d48bc2784f5f086d3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadScreen: {fileID: 336002979}
 --- !u!1 &336002979
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,6 +578,8 @@ GameObject:
   - component: {fileID: 336002980}
   - component: {fileID: 336002982}
   - component: {fileID: 336002981}
+  - component: {fileID: 336002983}
+  - component: {fileID: 336002984}
   m_Layer: 5
   m_Name: LoadScreen
   m_TagString: Untagged
@@ -630,6 +646,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336002979}
   m_CullTransparentMesh: 1
+--- !u!95 &336002983
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336002979}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d0e115a73f4f1d1428445cb0152f848a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &336002984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336002979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5260cd7ec364730a854b25ab5bef60b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultLoadScreen: {fileID: 246563706}
+  roomText: {fileID: 570837360}
+  levelText: {fileID: 1318678434}
 --- !u!1 &358340465
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,6 +714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   style: {fileID: 11400000, guid: 2859e7aa1c76e8a41b489137847ebcfa, type: 2}
   count: 300
+  isReady: 0
 --- !u!4 &358340467
 Transform:
   m_ObjectHideFlags: 0
@@ -762,7 +816,6 @@ MonoBehaviour:
   room: 0
   generator: {fileID: 1900008281}
   enemies: {fileID: 1759463550}
-  stylePoolPrefab: {fileID: 9099441280329218828, guid: 66136acd9f5ddd646a85bf9c8726e155, type: 3}
   styles:
   - {fileID: 952275649}
   - {fileID: 358340466}
@@ -1036,7 +1089,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Room 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cfc5b4e4a3a8e594dbc248b84b7d96d2, type: 2}
   m_sharedMaterial: {fileID: 1027817895030612872, guid: cfc5b4e4a3a8e594dbc248b84b7d96d2, type: 2}
@@ -1486,6 +1539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   style: {fileID: 11400000, guid: 92bdff2cd1790794e8e65da777f3a9c6, type: 2}
   count: 300
+  isReady: 0
 --- !u!4 &952275650
 Transform:
   m_ObjectHideFlags: 0
@@ -1558,7 +1612,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cfc5b4e4a3a8e594dbc248b84b7d96d2, type: 2}
   m_sharedMaterial: {fileID: 1027817895030612872, guid: cfc5b4e4a3a8e594dbc248b84b7d96d2, type: 2}
@@ -1749,6 +1803,7 @@ MonoBehaviour:
   - key: Centurion
     obj: {fileID: 4158990515285099422, guid: 6bf7884c5bafffd41bbd9eb08715a09c, type: 3}
   count: 10
+  isReady: 0
 --- !u!4 &1759463551
 Transform:
   m_ObjectHideFlags: 0
