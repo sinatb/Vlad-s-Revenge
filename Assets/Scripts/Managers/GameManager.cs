@@ -15,6 +15,7 @@ namespace Managers
         public ObjectPool enemies;
         private static GameManager _instance;
         private List<Room> _rooms;
+        public Room ActiveRoom { get; private set; }
         public bool LoadTrigger { private get;  set; }
         
         public static GameManager Instance => _instance;
@@ -44,9 +45,10 @@ namespace Managers
             {
                 yield return null;
             }
-            if (room - 1 >= 0)
-                _rooms[room - 1].Deactivate();
-            _rooms[room].Activate();
+            if (ActiveRoom !=null)
+                ActiveRoom.Deactivate();
+            ActiveRoom = _rooms[room];
+            ActiveRoom.Activate();
             room++;
             LoadTrigger = false;
         }
@@ -67,6 +69,13 @@ namespace Managers
             {
                 if (room < 5)
                 {
+                    StartCoroutine(LoadNextRoom());
+                }
+                else
+                {
+                    level++;
+                    room = 0;
+                    _rooms = generator.GenerateRooms();
                     StartCoroutine(LoadNextRoom());
                 }
             }

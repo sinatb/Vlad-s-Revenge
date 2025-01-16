@@ -1,10 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Difficulty;
 using UnityEngine;
-using UnityEngine.Serialization;
-
 namespace PCG
 {
     public class Generator : MonoBehaviour
@@ -43,6 +39,11 @@ namespace PCG
         }
         public List<Room> GenerateRooms()
         {
+            foreach (var d in levelDifficulty.settings)
+            {
+                _difficultyCount[d.difficulty] = d.count;
+            }
+            ResetDdl();   
             var rooms = new List<Room>();
             for (var i=0; i<gp.numRooms; i++)
             { 

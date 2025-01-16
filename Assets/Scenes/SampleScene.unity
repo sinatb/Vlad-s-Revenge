@@ -900,7 +900,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.15359911, g: 0.15845582, b: 0.19245279, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1802,7 +1802,7 @@ MonoBehaviour:
     obj: {fileID: 9165078223966728147, guid: ce46e38533d5b5e4ca1e28ce26e9e0a4, type: 3}
   - key: Centurion
     obj: {fileID: 4158990515285099422, guid: 6bf7884c5bafffd41bbd9eb08715a09c, type: 3}
-  count: 10
+  count: 20
   isReady: 0
 --- !u!4 &1759463551
 Transform:
