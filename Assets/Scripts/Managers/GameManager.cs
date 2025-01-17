@@ -17,6 +17,8 @@ namespace Managers
         
         public Room ActiveRoom { get; private set; }
         public bool LoadTrigger { private get;  set; }
+        public bool IsGameRunning => !UIManager.IsInLoad && ActiveRoom != null;
+
         public static GameManager Instance => _instance;
         private static GameManager _instance;
         
@@ -76,7 +78,7 @@ namespace Managers
 
         private void Update()
         {
-            if (Input.GetKeyUp(KeyCode.D) && !UIManager.IsInLoad)
+            if (Input.GetKeyUp(KeyCode.D) && IsGameRunning)
             {
                 StartCoroutine(room < 5 ? LoadNextRoom() : LoadNextLevel());
             }
