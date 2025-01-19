@@ -15,7 +15,8 @@ namespace Player
             prj.transform.position = transform.position;
             prj.GetComponent<Projectile>().Setup(dir,
                                                     GameManager.Instance.settings.projectileSpeed,
-                                                    GameManager.Instance.player.classData.damage);
+                                                    GameManager.Instance.player.classData.damage,
+                                                    true);
             prj.SetActive(true);
         }
     }
