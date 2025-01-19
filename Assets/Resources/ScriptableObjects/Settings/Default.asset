@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4d80d83910a4f3483de14dcec13d0d3, type: 3}
-  m_Name: Mage
+  m_Script: {fileID: 11500000, guid: de4996dea48d2634bb7a00892db19bc7, type: 3}
+  m_Name: Default
   m_EditorClassIdentifier: 
-  className: Mage
-  model: {fileID: 1663355460, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
-  maximumHealth: 50
-  maximumSpeed: 2
-  damage: 10
-  attackCooldown: 0.5
+  projectileSpeed: 20

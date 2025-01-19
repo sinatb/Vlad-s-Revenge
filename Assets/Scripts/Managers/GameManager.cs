@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using PCG;
 using Pools;
+using Settings;
 using UnityEngine;
 
 namespace Managers
@@ -16,6 +17,7 @@ namespace Managers
         public ObjectPool          projectiles;
         public List<StylePool>     styles;
         public Player.Player       player;
+        public GameSettings        settings;
         //------properties------------
         public Room ActiveRoom { get; private set; }
         public bool LoadTrigger { private get;  set; }

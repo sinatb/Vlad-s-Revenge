@@ -1237,6 +1237,7 @@ MonoBehaviour:
   - {fileID: 952275649}
   - {fileID: 358340466}
   player: {fileID: 1291500592}
+  settings: {fileID: 11400000, guid: 5acefb7a4420b2741bc681a237d5f4ed, type: 2}
 --- !u!1 &519410605
 GameObject:
   m_ObjectHideFlags: 0
