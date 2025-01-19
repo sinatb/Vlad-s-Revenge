@@ -13,7 +13,9 @@ namespace Player
             var dir = (mouseWorldPos - transform.position).normalized;
             var prj = GameManager.Instance.projectiles.GetPooledObject("Mage-Bolt");
             prj.transform.position = transform.position;
-            prj.GetComponent<Projectile>().Setup(dir, GameManager.Instance.settings.projectileSpeed);
+            prj.GetComponent<Projectile>().Setup(dir,
+                                                    GameManager.Instance.settings.projectileSpeed,
+                                                    GameManager.Instance.player.classData.damage);
             prj.SetActive(true);
         }
     }

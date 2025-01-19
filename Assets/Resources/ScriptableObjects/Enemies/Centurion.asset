@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Centurion
   m_EditorClassIdentifier: 
   enemyName: Centurion
+  health: 300

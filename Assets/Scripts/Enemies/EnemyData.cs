@@ -6,5 +6,6 @@ namespace Enemies
     public class EnemyData : ScriptableObject
     {
         public string enemyName;
+        public float  health;
     }
 }

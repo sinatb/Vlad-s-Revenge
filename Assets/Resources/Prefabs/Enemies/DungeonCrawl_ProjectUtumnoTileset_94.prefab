@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 1763337286851729128}
   - component: {fileID: 110284966099186307}
   - component: {fileID: -2303166278439198951}
+  - component: {fileID: 2328927891339677959}
   m_Layer: 0
   m_Name: DungeonCrawl_ProjectUtumnoTileset_94
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 9165078223966728147}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.675436, y: -0.09618741, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -101,3 +102,69 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: b7a77bc4bea37da4b8fee702b92bea78, type: 2}
+--- !u!60 &2328927891339677959
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9165078223966728147}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.106690675, y: 0.48906738}
+      - {x: -0.0422803, y: 0.49453372}
+      - {x: -0.18125367, y: 0.41657895}
+      - {x: -0.21407299, y: 0.27506205}
+      - {x: -0.16786756, y: 0.20588826}
+      - {x: -0.26542035, y: 0.0486241}
+      - {x: -0.35705313, y: 0.035991266}
+      - {x: -0.36058986, y: -0.123217836}
+      - {x: -0.17666513, y: -0.095395625}
+      - {x: -0.3125, y: -0.5}
+      - {x: 0.29455322, y: -0.48633426}
+      - {x: 0.37190428, y: -0.38985103}
+      - {x: 0.3823771, y: -0.21049163}
+      - {x: 0.15575677, y: -0.21252055}
+      - {x: 0.14505255, y: -0.09957885}
+      - {x: 0.22234157, y: 0.016460478}
+      - {x: 0.19639334, y: 0.16335124}
+      - {x: 0.2688382, y: 0.23176453}
+      - {x: 0.26412597, y: 0.30739623}
+  m_UseDelaunayMesh: 0

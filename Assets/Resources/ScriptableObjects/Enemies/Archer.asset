@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Archer
   m_EditorClassIdentifier: 
   enemyName: Archer
+  health: 50

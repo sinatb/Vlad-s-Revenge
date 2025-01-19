@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Enemies;
 using UnityEngine;
 
 namespace Projectiles
@@ -7,10 +7,12 @@ namespace Projectiles
     {
         private Vector2 _direction;
         private float   _speed;
-        public void Setup(Vector2 dir, float speed)
+        private float   _damage;
+        public void Setup(Vector2 dir, float speed, float damage)
         {
             _direction = dir;
             _speed = speed;
+            _damage = damage;
         }
         
         private void Update()
@@ -23,6 +25,10 @@ namespace Projectiles
             if (other.gameObject.CompareTag("Wall"))
             {
                 gameObject.SetActive(false);
+            }else if (other.gameObject.CompareTag("Enemy"))
+            {
+                gameObject.SetActive(false);
+                other.gameObject.GetComponent<BaseEnemy>().TakeDamage(_damage);
             }
         }
     }

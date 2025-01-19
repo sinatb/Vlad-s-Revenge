@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Warrior
   m_EditorClassIdentifier: 
   enemyName: Warrior
+  health: 100
