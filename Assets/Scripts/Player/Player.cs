@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
 
@@ -7,7 +8,14 @@ namespace Player
     {
         public PlayerClassData   classData;
         private PlayerController _controller;
-
+        private bool             _canAttack = true;
+        
+        private IEnumerator AttackCooldown()
+        {
+            _canAttack = false;
+            yield return new WaitForSeconds(classData.attackCooldown);
+            _canAttack = true;
+        }
         private void SetController()
         {
             switch (classData.name)
@@ -43,9 +51,10 @@ namespace Player
             {
                 _controller.Move(Direction.Down,classData.maximumSpeed);
             }
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0) && _canAttack)
             {
                 _controller.Attack();
+                StartCoroutine(AttackCooldown());
             }
         }
     }
