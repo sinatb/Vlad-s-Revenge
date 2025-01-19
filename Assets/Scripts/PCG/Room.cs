@@ -10,10 +10,11 @@ namespace PCG
     {
         // ReSharper disable once MemberCanBePrivate.Global
         public int[,]              Grid { get; private set; }
-        private PcgStyle           _style;      
+        public bool                hasEnemy = true;
+        private PcgStyle           _style;    
         private bool               _isActive;
         private DifficultySettings _difficulty;
-        private List<GameObject> _usedTiles;
+        private List<GameObject>   _usedTiles;
  
         public void Init(int[,] grid, PcgStyle style, DifficultySettings difficulty)
         {
@@ -57,7 +58,6 @@ namespace PCG
                 y = Random.Range(0,Grid.GetLength(1));
                 x = Random.Range(0, Grid.GetLength(0));
             }
-
             return new Vector3(
                 x - (float)Grid.GetLength(0) / 2,
                 y - (float)Grid.GetLength(1) / 2,

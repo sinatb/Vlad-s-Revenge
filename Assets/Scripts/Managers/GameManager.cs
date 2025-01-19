@@ -8,39 +8,32 @@ namespace Managers
 {
     public class GameManager : MonoBehaviour
     {
+        //------public variables------
         public int                 level;
         public int                 room;
         public Generator           generator;
         public ObjectPool          enemies;
         public List<StylePool>     styles;
-
-        
+        //------properties------------
         public Room ActiveRoom { get; private set; }
         public bool LoadTrigger { private get;  set; }
         public bool IsGameRunning => !UIManager.IsInLoad && ActiveRoom != null;
-
         public static GameManager Instance => _instance;
         private static GameManager _instance;
-        
+        //------private variables-----
         private List<Room>         _rooms;
         
+        //WARNING Creates coupling between GameManager and Room
         public static StylePool GetStylePool(PcgStyle style)
         {
             return _instance.styles.Find(s => s.style == style);
         }
-        private void Awake()
-        {
-            if (_instance == null)
-            {
-                _instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else if (_instance != this)
-            {
-                Destroy(gameObject);
-            }
-        }
 
+        #region Level loading
+        /// <summary>
+        /// Coroutine to load the next level. Waits in the perk select screen
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator LoadNextLevel()
         {
             UIManager.ShowLevelLoadScreen();
@@ -55,6 +48,10 @@ namespace Managers
             yield return new WaitUntil(() => !UIManager.IsInPerkSelect);
             LoadTrigger = false;
         }
+        /// <summary>
+        /// Loads next room in the level. 2 seconds delay before player can be in control
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator LoadNextRoom()
         {
             UIManager.ShowRoomLoadScreen();
@@ -65,6 +62,21 @@ namespace Managers
             room++;
             LoadTrigger = false;
         }
+        #endregion
+      
+        private void Awake()
+        {
+            if (_instance == null)
+            {
+                _instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else if (_instance != this)
+            {
+                Destroy(gameObject);
+            }
+        }
+
         private IEnumerator Start()
         {
             
@@ -78,7 +90,7 @@ namespace Managers
 
         private void Update()
         {
-            if (Input.GetKeyUp(KeyCode.D) && IsGameRunning)
+            if (IsGameRunning && !ActiveRoom.hasEnemy)
             {
                 StartCoroutine(room < 5 ? LoadNextRoom() : LoadNextLevel());
             }
