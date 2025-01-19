@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Centurion
   health: 300
+  bloodBonus: 25

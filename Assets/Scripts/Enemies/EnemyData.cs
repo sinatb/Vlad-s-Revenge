@@ -7,5 +7,6 @@ namespace Enemies
     {
         public string enemyName;
         public float  health;
+        public int    bloodBonus;
     }
 }

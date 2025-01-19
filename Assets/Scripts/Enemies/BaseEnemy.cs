@@ -1,3 +1,4 @@
+using Managers;
 using UnityEngine;
 
 namespace Enemies
@@ -15,6 +16,7 @@ namespace Enemies
             _health -= damage;
             if (_health <= 0)
             {
+                GameManager.Instance.player.AddBlood(data.bloodBonus);
                 gameObject.SetActive(false);
             }
         }

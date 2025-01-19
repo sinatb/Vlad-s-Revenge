@@ -7,6 +7,7 @@ namespace Player
     public class Player : MonoBehaviour
     {
         public PlayerClassData   classData;
+        public int               blood;
         private PlayerController _controller;
         private bool             _canAttack = true;
         
@@ -15,6 +16,11 @@ namespace Player
             _canAttack = false;
             yield return new WaitForSeconds(classData.attackCooldown);
             _canAttack = true;
+        }
+
+        public void AddBlood(int bonus)
+        {
+            blood += bonus;
         }
         private void SetController()
         {
