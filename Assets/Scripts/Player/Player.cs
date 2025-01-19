@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 namespace Player
 {
@@ -41,6 +42,10 @@ namespace Player
             }else if (Input.GetKeyUp(KeyCode.S))
             {
                 _controller.Move(Direction.Down,classData.maximumSpeed);
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                _controller.Attack();
             }
         }
     }

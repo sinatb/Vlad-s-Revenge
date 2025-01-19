@@ -10,6 +10,7 @@ namespace Player
         public float            maximumHealth;
         public int              maximumSpeed;
         public float            damage;
+        public float            attackCooldown;
         
     }
 }

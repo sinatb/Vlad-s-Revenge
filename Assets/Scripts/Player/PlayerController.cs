@@ -21,7 +21,6 @@ namespace Player
                 return Vector2.up;
             return Vector2.down;
         }
-
         public Vector2Int GetLocation()
         {
             var g = GameManager.Instance.ActiveRoom.Grid;
@@ -29,7 +28,6 @@ namespace Player
             int y = (int)Math.Round(transform.position.y + (float)g.GetLength(1) / 2);
             return new Vector2Int(x, y);
         }
-
         private bool IsValidMove(Direction dir, int speed)
         {
             var g = GameManager.Instance.ActiveRoom.Grid;
@@ -78,5 +76,6 @@ namespace Player
             }
             gameObject.transform.Translate(DirectionToVec2(dir)* speed);
         }
+        public abstract void Attack();
     }
 }

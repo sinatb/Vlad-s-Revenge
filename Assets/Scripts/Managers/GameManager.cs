@@ -13,6 +13,7 @@ namespace Managers
         public int                 room;
         public Generator           generator;
         public ObjectPool          enemies;
+        public ObjectPool          projectiles;
         public List<StylePool>     styles;
         public Player.Player       player;
         //------properties------------
@@ -83,7 +84,8 @@ namespace Managers
         {
             
             yield return new WaitUntil(() => styles.TrueForAll(s=>s.isReady) &&
-                                             enemies.isReady);
+                                             enemies.isReady &&
+                                             projectiles.isReady);
             level = 1;
             room = 0;
             _rooms = generator.GenerateRooms();

@@ -1232,6 +1232,7 @@ MonoBehaviour:
   room: 0
   generator: {fileID: 1900008281}
   enemies: {fileID: 1759463550}
+  projectiles: {fileID: 1895570747}
   styles:
   - {fileID: 952275649}
   - {fileID: 358340466}
@@ -3331,6 +3332,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864745536}
   m_CullTransparentMesh: 1
+--- !u!1 &1895570745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1895570746}
+  - component: {fileID: 1895570747}
+  m_Layer: 0
+  m_Name: ProjectilePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1895570746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895570745}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2043284456}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1895570747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895570745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d648dc7676347b6839ac8aef72c60ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - key: Mage-Bolt
+    obj: {fileID: 3845802436499342842, guid: 32abb10818fd5344dafbaa823b556260, type: 3}
+  count: 20
+  isReady: 0
 --- !u!1 &1900008280
 GameObject:
   m_ObjectHideFlags: 0
@@ -3875,6 +3925,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1759463551}
+  - {fileID: 1895570746}
   - {fileID: 952275650}
   - {fileID: 358340467}
   m_Father: {fileID: 0}
