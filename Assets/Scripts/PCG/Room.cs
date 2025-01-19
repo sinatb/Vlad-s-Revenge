@@ -49,7 +49,7 @@ namespace PCG
             }
         }
 
-        private Vector3 GetRandomFloor()
+        public Vector3 GetRandomFloor()
         {
             var x = Random.Range(0,Grid.GetLength(0));
             var y = Random.Range(0,Grid.GetLength(1));

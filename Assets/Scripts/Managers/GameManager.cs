@@ -14,6 +14,7 @@ namespace Managers
         public Generator           generator;
         public ObjectPool          enemies;
         public List<StylePool>     styles;
+        public Player.Player       player;
         //------properties------------
         public Room ActiveRoom { get; private set; }
         public bool LoadTrigger { private get;  set; }
@@ -60,6 +61,7 @@ namespace Managers
             ActiveRoom = _rooms[room];
             ActiveRoom.Activate();
             room++;
+            player.transform.position = ActiveRoom.GetRandomFloor();
             LoadTrigger = false;
         }
         #endregion
