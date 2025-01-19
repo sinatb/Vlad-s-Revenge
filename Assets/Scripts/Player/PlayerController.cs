@@ -68,14 +68,15 @@ namespace Player
         }
         public void Move(Direction dir, int speed)
         {
-            for (var i=speed; i>0; i--)
+            for (var i=1; i<=speed; i++)
             {
-                if (IsValidMove(dir, i))
+                if (!IsValidMove(dir, i))
                 {
-                    gameObject.transform.Translate(DirectionToVec2(dir)*i);
+                    gameObject.transform.Translate(DirectionToVec2(dir)* (i-1));
                     return;
                 }
             }
+            gameObject.transform.Translate(DirectionToVec2(dir)* speed);
         }
     }
 }
