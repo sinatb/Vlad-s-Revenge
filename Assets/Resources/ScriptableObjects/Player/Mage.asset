@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d80d83910a4f3483de14dcec13d0d3, type: 3}
   m_Name: Mage
   m_EditorClassIdentifier: 
-  className: 
+  className: Mage
   model: {fileID: 1663355460, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
   maximumHealth: 50
-  maximumSpeed: 3
+  maximumSpeed: 2
   damage: 10
