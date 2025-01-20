@@ -6,7 +6,7 @@ namespace Player
 {
     public class MageController : PlayerController
     {
-        public override void Attack()
+        public override void Attack(float damage)
         {
             var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPos.z = 0f;
@@ -15,7 +15,7 @@ namespace Player
             prj.transform.position = transform.position;
             prj.GetComponent<Projectile>().Setup(dir,
                                                     GameManager.Instance.settings.projectileSpeed,
-                                                    GameManager.Instance.player.classData.damage,
+                                                    damage,
                                                     true);
             prj.SetActive(true);
         }

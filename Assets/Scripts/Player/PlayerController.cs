@@ -76,6 +76,6 @@ namespace Player
             }
             gameObject.transform.Translate(DirectionToVec2(dir)* speed);
         }
-        public abstract void Attack();
+        public abstract void Attack(float damage);
     }
 }
