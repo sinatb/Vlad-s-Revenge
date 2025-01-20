@@ -1,4 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
+using NUnit.Framework;
+using Perks;
+using Perks.Interfaces;
 using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
 
@@ -17,12 +21,13 @@ namespace Player
         private bool             _canAttack = true;
         private bool             _flipped;
         private SpriteRenderer   _renderer;
-
+        private List<Perk>       _perks;
         private void Awake()
         {
             _health = classData.maximumHealth;
             _speed = classData.maximumSpeed;
             _damage = classData.damage;
+            _perks = new List<Perk>();
         }
         private IEnumerator AttackCooldown()
         {
@@ -113,5 +118,14 @@ namespace Player
             _damage *= (1 + amount);
         }
         #endregion
+
+        public void AddPerk(Perk p)
+        {
+            _perks.Add(p);
+            if (p is IStatsIncrease i)
+            {
+                i.IncreaseStats(this);
+            }
+        }
     }
 }

@@ -6,5 +6,6 @@ namespace Perks
     {
         public string perkName;
         public int    chance;
+        public string description;
     }
 }
