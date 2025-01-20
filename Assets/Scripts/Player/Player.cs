@@ -10,7 +10,8 @@ namespace Player
         public int               blood;
         private PlayerController _controller;
         private bool             _canAttack = true;
-        
+        private bool             _flipped;
+        private SpriteRenderer   _renderer;
         private IEnumerator AttackCooldown()
         {
             _canAttack = false;
@@ -39,7 +40,8 @@ namespace Player
         private void Start()
         {
             gameObject.AddComponent<SpriteRenderer>().sprite = classData.model;
-            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
+            _renderer = gameObject.GetComponent<SpriteRenderer>();
+            _renderer.sortingOrder = 2;
             SetController();
         }
         private void Update()
@@ -47,9 +49,19 @@ namespace Player
             if (Input.GetKeyUp(KeyCode.A))
             {
                 _controller.Move(Direction.Left, classData.maximumSpeed);
+                if (_flipped)
+                {
+                    _renderer.flipX = false;
+                    _flipped = false;
+                }
             }else if (Input.GetKeyUp(KeyCode.D))
             {
                 _controller.Move(Direction.Right, classData.maximumSpeed);
+                if (!_flipped)
+                {
+                    _renderer.flipX = true;
+                    _flipped = true;
+                }
             }else if (Input.GetKeyUp(KeyCode.W))
             {
                 _controller.Move(Direction.Up,classData.maximumSpeed);
