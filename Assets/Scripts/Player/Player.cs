@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
 using Perks;
 using Perks.Interfaces;
 using UnityEngine;
-using UnityEngine.InputSystem.LowLevel;
 
 namespace Player
 {
@@ -13,6 +11,7 @@ namespace Player
         //------public variables------
         public PlayerClassData   classData;
         public int               blood;
+        public List<Perk>        Perks => _perks;
         //------private variables-----
         private float            _health;
         private int              _speed;
@@ -22,11 +21,17 @@ namespace Player
         private bool             _flipped;
         private SpriteRenderer   _renderer;
         private List<Perk>       _perks;
+        private PlayerUI         _ui;
+        
+        //TODO Should be transformed to setup later
         private void Awake()
         {
             _health = classData.maximumHealth;
             _speed = classData.maximumSpeed;
             _damage = classData.damage;
+            _ui = GetComponent<PlayerUI>();
+            _ui.avatar.sprite = classData.model;
+            _ui.avatar.color = Color.white;
             _perks = new List<Perk>();
         }
         private IEnumerator AttackCooldown()
@@ -99,6 +104,7 @@ namespace Player
         /// <param name="amount">A percentage between 0.0 and 1.0</param>
         public void IncreaseHealth(float amount)
         {
+            _health = classData.maximumHealth;
             _health *= (1 + amount);
         }
         /// <summary>
@@ -121,6 +127,8 @@ namespace Player
 
         public void AddPerk(Perk p)
         {
+            _ui.perks[_perks.Count].sprite = p.icon;
+            _ui.perks[_perks.Count].color = Color.white;
             _perks.Add(p);
             if (p is IStatsIncrease i)
             {

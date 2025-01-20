@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a403b76a26704f68b00455188bb2bfb0, type: 3}
   m_Name: IncreaseDamageRelative
   m_EditorClassIdentifier: 
+  icon: {fileID: 6952980084159451948, guid: a159427f4b8e5144a9f273744e9156f8, type: 3}
   perkName: Increase Damage
   chance: 10
   description: Increase the damage of the player by 20 percent
-  amount: 20
+  amount: 0.2
