@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Perks
 {
-    [CreateAssetMenu(menuName = "Perks/LifeSteal", fileName = "LifeSteal")]
+    [CreateAssetMenu(menuName = "Perks/AttackModifier/LifeSteal", fileName = "LifeSteal")]
     public class LifeSteal : AttackModifierPerk
     {
         public float healPercentage;

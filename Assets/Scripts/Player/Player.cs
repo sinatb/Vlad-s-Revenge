@@ -42,6 +42,7 @@ namespace Player
             _ui.avatar.sprite = classData.model;
             _ui.avatar.color = Color.white;
             _perks = new List<Perk>();
+            _onAttack = new SortedList<byte, Action<Player, Projectile>>();
         }
         private IEnumerator AttackCooldown()
         {

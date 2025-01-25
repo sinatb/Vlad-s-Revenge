@@ -16,5 +16,5 @@ MonoBehaviour:
   perkName: Life Steal
   chance: 5
   description: 10 Percent Of Damage Heals You
-  priority: 0
+  priority: 1
   healPercentage: 0.1
