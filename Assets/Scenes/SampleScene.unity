@@ -2525,7 +2525,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classData: {fileID: 11400000, guid: d1a9d12a8421ffb47b11801362369c1c, type: 2}
   blood: 0
-  _health: 0
 --- !u!61 &1291500593
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2920,6 +2919,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 581d485e17707534ebc2922e054a3197, type: 2}
   - {fileID: 11400000, guid: f2f1eabc35b9d8e4285c81f2e682c7ae, type: 2}
   - {fileID: 11400000, guid: 8882fbf0aa5e8164a8abeba1afae1a31, type: 2}
+  - {fileID: 11400000, guid: 3876c60a46567924d97dc40b234c17fd, type: 2}
 --- !u!1 &1719615145
 GameObject:
   m_ObjectHideFlags: 0

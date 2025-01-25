@@ -5,8 +5,9 @@ namespace Effects
 {
     public abstract class TimedEffect : BaseEffect
     {
-        public int turns;
-        public int amount;
+        public float effectTime;
+        public float tickTime;
+        public int   amount;
         public abstract override void Apply(BaseEnemy enemy);
     }
 }

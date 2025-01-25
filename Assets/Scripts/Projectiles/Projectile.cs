@@ -1,15 +1,18 @@
-﻿using Enemies;
+﻿using System;
+using Effects;
+using Enemies;
 using UnityEngine;
 
 namespace Projectiles
 {
     public class Projectile : MonoBehaviour
     {
-        private Vector2 _direction;
-        private bool    _shotByPlayer;
-        private float   _speed;
-        private float   _damage;
-        private bool    _isCrit;
+        private Vector2     _direction;
+        private bool        _shotByPlayer;
+        private float       _speed;
+        private float       _damage;
+        private bool        _isCrit;
+        private TimedEffect _effect;
         
         public float    Damage => _damage;
         public bool     IsCrit => _isCrit;
@@ -31,6 +34,11 @@ namespace Projectiles
             _isCrit = true;
             _damage *= value;
         }
+
+        public void SetEffect(TimedEffect te)
+        {
+            _effect = te;
+        }
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.CompareTag("Wall"))
@@ -38,13 +46,22 @@ namespace Projectiles
                 gameObject.SetActive(false);
             }else if (other.gameObject.CompareTag("Enemy") && _shotByPlayer)
             {
-                gameObject.SetActive(false);
+                if (_effect != null)
+                {
+                    other.gameObject.GetComponent<BaseEnemy>().AddEffect(_effect);
+                }
                 other.gameObject.GetComponent<BaseEnemy>().TakeDamage(_damage);
+                gameObject.SetActive(false);
             } else if (other.gameObject.CompareTag("Player") && !_shotByPlayer)
             {
                 gameObject.SetActive(false);
                 //other.gameObject.GetComponent<Player.Player>().TakeDamage(_damage);
             }
+        }
+
+        private void OnDisable()
+        {
+            _effect = null;
         }
     }
 }
