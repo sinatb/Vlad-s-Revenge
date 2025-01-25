@@ -17,7 +17,6 @@ namespace Pools
         public bool                                 isReady;
         private Dictionary<string,List<GameObject>> _pool;
         
-
         private void Awake()
         {
             _pool = new Dictionary<string, List<GameObject>>();
