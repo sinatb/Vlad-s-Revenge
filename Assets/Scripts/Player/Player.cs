@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Perks;
@@ -26,8 +27,7 @@ namespace Player
         private SpriteRenderer   _renderer;
         private List<Perk>       _perks;
         private PlayerUI         _ui;
-        private delegate void    OnAttack(Player player, Projectile projectile);
-        private OnAttack         _onAttackEvent;
+        private SortedList<byte, Action<Player,Projectile>> _onAttack;
         
         //TODO Should be transformed to setup later
         private void Awake()
@@ -102,7 +102,10 @@ namespace Player
             if (Input.GetMouseButtonUp(0) && _canAttack)
             {
                 var prj = _controller.Attack(_damage);
-                _onAttackEvent?.Invoke(this, prj);
+                foreach (var by in _onAttack)
+                {
+                    by.Value?.Invoke(this,prj);
+                }
                 StartCoroutine(AttackCooldown());
             }
         }
@@ -158,9 +161,9 @@ namespace Player
                 i.IncreaseStats(this);
             }
 
-            if (p is IAttackModifier modifier)
+            if (p is AttackModifierPerk modifier)
             {
-                _onAttackEvent += modifier.ModifyAttack;
+                _onAttack.Add(modifier.priority ,modifier.ModifyAttack);
             }
         }
     }
