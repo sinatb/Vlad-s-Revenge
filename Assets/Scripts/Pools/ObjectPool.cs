@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Effects;
+using Enemies;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -16,7 +18,23 @@ namespace Pools
         public int                                  count;
         public bool                                 isReady;
         private Dictionary<string,List<GameObject>> _pool;
-        
+
+        /// <summary>
+        /// Applies an instant effect on all effectable list members
+        /// </summary>
+        /// <param name="ie"></param>
+        public void ApplyEffectOnAll(InstantEffect ie)
+        {
+            foreach (var slp in _pool)
+            {
+                foreach (var e in slp.Value)
+                {
+                    var be = e.GetComponent<BaseEnemy>();
+                    if (be != null)
+                        be.AddEffect(ie);
+                }
+            }
+        }
         private void Awake()
         {
             _pool = new Dictionary<string, List<GameObject>>();

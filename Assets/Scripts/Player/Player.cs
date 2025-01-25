@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Effects;
+using Managers;
 using Perks;
 using Perks.Interfaces;
 using Projectiles;
@@ -15,7 +17,7 @@ namespace Player
         public int               blood;
         public List<Perk>        Perks => _perks;
         //------private variables-----
-        public float            _health;
+        private float            _health;
         private float            _maximumHealth;
         private int              _speed;
         private int              _maximumSpeed;
@@ -166,6 +168,12 @@ namespace Player
             {
                 _onAttack.Add(modifier.priority ,modifier.ModifyAttack);
             }
+
+            if (p is PermanentEnemyEffectPerk effectPerk)
+            {
+                GameManager.Instance.enemies.ApplyEffectOnAll(effectPerk.effect);
+            }
+            
         }
     }
 }

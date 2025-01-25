@@ -9,11 +9,11 @@ namespace Enemies
     public class BaseEnemy : MonoBehaviour
     {
         public EnemyData data;
-        private float               _health;
-        private int                 _blood;
+        public float               _health;
+        public int                 _blood;
         private List<InstantEffect> _instantEffects;
         private List<TimedEffect>   _timedEffects;
-
+        
         private void Awake()
         {
             _instantEffects = new List<InstantEffect>();
@@ -23,6 +23,12 @@ namespace Enemies
         public void IncreaseBlood(int amount)
         {
             _blood += amount;
+        }
+
+        private void ApplyInstantEffects()
+        {
+            foreach(var ie in _instantEffects)
+                ie.Apply(this);
         }
 
         public void DecreaseHealthPercentage(int amount)
@@ -35,15 +41,18 @@ namespace Enemies
             if (e is TimedEffect te)
                 _timedEffects.Add(te);
             else if (e is InstantEffect ie)
+            {
                 _instantEffects.Add(ie);
+                ApplyInstantEffects();
+            }
         }
         private void OnEnable()
         {
             _health = data.health;
             _blood = data.bloodBonus;
-            foreach(var ie in _instantEffects)
-                ie.Apply(this);
+            ApplyInstantEffects();
         }
+
         public void TakeDamage(float damage)
         {
             _health -= damage;
