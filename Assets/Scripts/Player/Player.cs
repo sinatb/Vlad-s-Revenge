@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Perks;
 using Perks.Interfaces;
+using Projectiles;
 using UnityEngine;
 
 namespace Player
@@ -13,22 +14,30 @@ namespace Player
         public int               blood;
         public List<Perk>        Perks => _perks;
         //------private variables-----
-        private float            _health;
+        public float            _health;
+        private float            _maximumHealth;
         private int              _speed;
+        private int              _maximumSpeed;
         private float            _damage;
+        private float            _maximumDamage;
         private PlayerController _controller;
         private bool             _canAttack = true;
         private bool             _flipped;
         private SpriteRenderer   _renderer;
         private List<Perk>       _perks;
         private PlayerUI         _ui;
+        private delegate void    OnAttack(Player player, Projectile projectile);
+        private OnAttack         _onAttackEvent;
         
         //TODO Should be transformed to setup later
         private void Awake()
         {
             _health = classData.maximumHealth;
+            _maximumHealth = _health;
             _speed = classData.maximumSpeed;
+            _maximumSpeed = _speed;
             _damage = classData.damage;
+            _maximumDamage = _damage;
             _ui = GetComponent<PlayerUI>();
             _ui.avatar.sprite = classData.model;
             _ui.avatar.color = Color.white;
@@ -92,7 +101,8 @@ namespace Player
             }
             if (Input.GetMouseButtonUp(0) && _canAttack)
             {
-                _controller.Attack(_damage);
+                var prj = _controller.Attack(_damage);
+                _onAttackEvent?.Invoke(this, prj);
                 StartCoroutine(AttackCooldown());
             }
         }
@@ -102,29 +112,42 @@ namespace Player
         /// Increases the player's health by a percentage
         /// </summary>
         /// <param name="amount">A percentage between 0.0 and 1.0</param>
-        public void IncreaseHealth(float amount)
+        public void IncreaseMaximumHealth(float amount)
         {
-            _health = classData.maximumHealth;
-            _health *= (1 + amount);
+            _maximumHealth *= (1 + amount);
+            _health = _maximumHealth;
         }
         /// <summary>
         /// Increases the player's speed by a flat amount
         /// </summary>
         /// <param name="amount">An int represnting increase amount</param>
-        public void IncreaseSpeed(int amount)
+        public void IncreaseMaximumSpeed(int amount)
         {
-            _speed += amount;
+            _maximumSpeed += _speed;
+            _speed = _maximumSpeed;
         }
         /// <summary>
         /// Increases the player's damage by a percentage
         /// </summary>
         /// <param name="amount">A percentage between 0.0 and 1.0</param>
-        public void IncreaseDamage(float amount)
+        public void IncreaseMaximumDamage(float amount)
         {
-            _damage *= (1 + amount);
+            _maximumDamage *= (1 + amount);
+            _damage = _maximumDamage;
         }
         #endregion
 
+        public void Heal(float amount)
+        {
+            if (_health + amount < _maximumHealth)
+            {
+                _health += amount;
+            }
+            else
+            {
+                _health = _maximumHealth;
+            }
+        }
         public void AddPerk(Perk p)
         {
             _ui.perks[_perks.Count].sprite = p.icon;
@@ -133,6 +156,11 @@ namespace Player
             if (p is IStatsIncrease i)
             {
                 i.IncreaseStats(this);
+            }
+
+            if (p is IAttackModifier modifier)
+            {
+                _onAttackEvent += modifier.ModifyAttack;
             }
         }
     }

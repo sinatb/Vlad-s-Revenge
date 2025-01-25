@@ -9,7 +9,7 @@ namespace Perks
         public float amount;
         public void IncreaseStats(Player.Player p)
         {
-            p.IncreaseHealth(amount);
+            p.IncreaseMaximumHealth(amount);
         }
     }
 }

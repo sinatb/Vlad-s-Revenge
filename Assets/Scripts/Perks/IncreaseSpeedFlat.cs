@@ -10,7 +10,7 @@ namespace Perks
 
         public void IncreaseStats(Player.Player p)
         {
-            p.IncreaseSpeed(amount);
+            p.IncreaseMaximumSpeed(amount);
         }
     }
 }

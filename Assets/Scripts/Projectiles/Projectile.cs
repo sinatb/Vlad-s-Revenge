@@ -9,6 +9,8 @@ namespace Projectiles
         private bool    _shotByPlayer;
         private float   _speed;
         private float   _damage;
+        
+        public float    Damage => _damage;
         public void Setup(Vector2 dir, float speed, float damage, bool shotByPlayer)
         {
             _direction = dir;
