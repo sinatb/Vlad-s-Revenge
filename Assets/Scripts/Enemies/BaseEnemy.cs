@@ -56,7 +56,9 @@ namespace Enemies
                     StartCoroutine(TakeEffectDamage(te));
                 }
                 else
+                {
                     _timedEffects[te] = te.effectTime;
+                }
             }
             else if (e is InstantEffect ie)
             {
@@ -68,9 +70,9 @@ namespace Enemies
         {
             _health = data.health;
             _blood = data.bloodBonus;
+            _timedEffects.Clear();
             ApplyInstantEffects();
         }
-
         public void TakeDamage(float damage)
         {
             _health -= damage;

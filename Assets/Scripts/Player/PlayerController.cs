@@ -78,5 +78,6 @@ namespace Player
             gameObject.transform.Translate(DirectionToVec2(dir)* speed);
         }
         public abstract Projectile Attack(float damage);
+        public abstract void Special();
     }
 }

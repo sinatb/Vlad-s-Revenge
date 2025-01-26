@@ -11,6 +11,6 @@ namespace Player
         public int              maximumSpeed;
         public float            damage;
         public float            attackCooldown;
-        
+        public float            specialCooldown;
     }
 }

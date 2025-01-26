@@ -21,5 +21,10 @@ namespace Player
             prj.SetActive(true);
             return prjComp;
         }
+
+        public override void Special()
+        {
+            Debug.Log("Special");
+        }
     }
 }

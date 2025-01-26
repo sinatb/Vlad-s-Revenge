@@ -18,3 +18,4 @@ MonoBehaviour:
   maximumSpeed: 2
   damage: 10
   attackCooldown: 0.5
+  specialCooldown: 2

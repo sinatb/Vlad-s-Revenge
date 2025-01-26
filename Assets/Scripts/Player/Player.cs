@@ -79,6 +79,7 @@ namespace Player
         }
         private void Update()
         {
+            #region Movement
             if (Input.GetKeyUp(KeyCode.A))
             {
                 _controller.Move(Direction.Left, _speed);
@@ -87,7 +88,8 @@ namespace Player
                     _renderer.flipX = false;
                     _flipped = false;
                 }
-            }else if (Input.GetKeyUp(KeyCode.D))
+            }
+            else if (Input.GetKeyUp(KeyCode.D))
             {
                 _controller.Move(Direction.Right, _speed);
                 if (!_flipped)
@@ -95,13 +97,17 @@ namespace Player
                     _renderer.flipX = true;
                     _flipped = true;
                 }
-            }else if (Input.GetKeyUp(KeyCode.W))
+            }
+            else if (Input.GetKeyUp(KeyCode.W))
             {
                 _controller.Move(Direction.Up, _speed);
-            }else if (Input.GetKeyUp(KeyCode.S))
+            }
+            else if (Input.GetKeyUp(KeyCode.S))
             {
                 _controller.Move(Direction.Down, _speed);
             }
+            #endregion
+            #region Attack
             if (Input.GetMouseButtonUp(0) && _canAttack)
             {
                 var prj = _controller.Attack(_damage);
@@ -111,6 +117,12 @@ namespace Player
                 }
                 StartCoroutine(AttackCooldown());
             }
+            if (Input.GetMouseButtonUp(1) && _canAttack && _ui.CanSpecial)
+            {
+                _controller.Special();
+                StartCoroutine(_ui.SpecialCooldown(classData.specialCooldown));
+            }
+            #endregion
         }
 
         #region Stat Increase Methods
