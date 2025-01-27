@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Player.Util
 {
-    public class FixedSizeList<T>
+    public class FixedSizeList<T> : IEnumerable<T>
     {
         private readonly int _maxSize;
         private readonly LinkedList<T> _list;
@@ -44,6 +44,13 @@ namespace Player.Util
         }
 
         public int Count => _list.Count;
-        
+        public IEnumerator<T> GetEnumerator()
+        {
+            return _list.GetEnumerator();
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }

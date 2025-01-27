@@ -35,6 +35,8 @@ namespace Player
 
         public void UpdateMageSpecialUI(FixedSizeList<SpellShard> shards)
         {
+            if (mageSpecialUI.activeSelf == false)
+                throw new System.Exception("Mage Special UI is not active.");
             for (var i=0; i<3; i++)
             {
                 var image = mageSpecialUI.transform.GetChild(i).GetChild(0).GetComponent<Image>();

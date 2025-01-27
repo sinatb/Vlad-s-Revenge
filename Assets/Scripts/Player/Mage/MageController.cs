@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Managers;
 using Player.Util;
 using Projectiles;
@@ -10,6 +11,7 @@ namespace Player.Mage
     {
         private FixedSizeList<SpellShard> _spellShards;
         private PlayerUI _ui;
+        private float    _bonusDamage;
         private void Awake()
         {
             _ui = gameObject.GetComponent<PlayerUI>();
@@ -31,7 +33,7 @@ namespace Player.Mage
             var prjComp = prj.GetComponent<Projectile>();
             prjComp.Setup(dir,
                              GameManager.Instance.settings.projectileSpeed,
-                             damage,
+                             damage + _bonusDamage,
                              true);
             prj.SetActive(true);
             return prjComp;
@@ -39,7 +41,7 @@ namespace Player.Mage
 
         public override void Special()
         {
-            Debug.Log("Special");
+             _bonusDamage = _spellShards.Where(shard => shard == SpellShard.Vis).Sum(shard => 10);
         }
 
         public override void AdditionalControls()
