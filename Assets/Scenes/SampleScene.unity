@@ -2697,6 +2697,7 @@ MonoBehaviour:
   - {fileID: 219135901}
   - {fileID: 925803203}
   coolDownImage: {fileID: 1956611758}
+  specialImage: {fileID: 1319339853}
 --- !u!1 &1318678432
 GameObject:
   m_ObjectHideFlags: 0
@@ -2891,7 +2892,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1367864441669037576, guid: 731ff615749d0924aafd4da9b47f3426, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

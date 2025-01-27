@@ -73,6 +73,7 @@ namespace Player
         private void Start()
         {
             gameObject.AddComponent<SpriteRenderer>().sprite = classData.model;
+            _ui.specialImage.sprite = classData.special;
             _renderer = gameObject.GetComponent<SpriteRenderer>();
             _renderer.sortingOrder = 2;
             SetController();

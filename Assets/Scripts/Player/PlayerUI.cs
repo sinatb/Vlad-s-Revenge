@@ -10,6 +10,7 @@ namespace Player
         public Image       avatar;
         public List<Image> perks;
         public Image       coolDownImage;
+        public Image       specialImage;
         public bool        CanSpecial { get; private set; } = true;
         public IEnumerator<WaitForSeconds> SpecialCooldown(float time)
         {

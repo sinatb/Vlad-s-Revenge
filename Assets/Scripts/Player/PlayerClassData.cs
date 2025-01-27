@@ -7,6 +7,7 @@ namespace Player
     {
         public string           className;
         public Sprite           model;
+        public Sprite           special;
         public float            maximumHealth;
         public int              maximumSpeed;
         public float            damage;
