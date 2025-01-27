@@ -30,7 +30,7 @@ namespace Player
         private SpriteRenderer   _renderer;
         private List<Perk>       _perks;
         private PlayerUI         _ui;
-        private SortedList<byte, Action<Player,Projectile>> _onAttack;
+        private SortedList<byte, Action<Player,PlayerProjectile>> _onAttack;
         
         //TODO Should be transformed to setup later
         private void Awake()
@@ -42,7 +42,7 @@ namespace Player
             _damage = classData.damage;
             _maximumDamage = _damage;
             _perks = new List<Perk>();
-            _onAttack = new SortedList<byte, Action<Player, Projectile>>();
+            _onAttack = new SortedList<byte, Action<Player, PlayerProjectile>>();
             gameObject.AddComponent<SpriteRenderer>().sprite = classData.model;
             _renderer = gameObject.GetComponent<SpriteRenderer>();
             _renderer.sortingOrder = 2;

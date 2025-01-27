@@ -9,7 +9,7 @@ namespace Perks
     public class VenomAttackPerk : AttackModifierPerk
     {
         public TimedEffect venomEffect;
-        public override void ModifyAttack(Player.Player player, Projectile projectile)
+        public override void ModifyAttack(Player.Player player, PlayerProjectile projectile)
         {
             projectile.SetEffect(venomEffect);
         }

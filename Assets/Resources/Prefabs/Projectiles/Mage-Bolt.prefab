@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2571949703979219727}
   - component: {fileID: 5192557789912213730}
-  - component: {fileID: -7132883462801135502}
   - component: {fileID: 8045303118279516058}
   - component: {fileID: 2896777150081974486}
+  - component: {fileID: 185476552654319240}
   m_Layer: 0
   m_Name: Mage-Bolt
   m_TagString: Untagged
@@ -90,18 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-7132883462801135502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3845802436499342842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc5747c756664048893ccabc272dfae4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &8045303118279516058
 Rigidbody2D:
   serializedVersion: 5
@@ -165,3 +153,15 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.27, y: -0.03}
   m_Radius: 0.15
+--- !u!114 &185476552654319240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845802436499342842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aacd4d5eb9449099643aa604ba8c775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

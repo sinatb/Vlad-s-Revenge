@@ -12,9 +12,12 @@ namespace Player.Mage
         private FixedSizeList<SpellShard> _spellShards;
         private PlayerUI _ui;
         private float    _bonusDamage;
+        private float    _bonusHeal;
+        private Player   _player;
         private void Awake()
         {
             _ui = gameObject.GetComponent<PlayerUI>();
+            _player = gameObject.GetComponent<Player>();
             _spellShards = new FixedSizeList<SpellShard>(3);
             for (int i = 0; i < 3; i++)
             {
@@ -23,18 +26,17 @@ namespace Player.Mage
             _ui.UpdateMageSpecialUI(_spellShards);
         }
 
-        public override Projectile Attack(float damage)
+        public override PlayerProjectile Attack(float damage)
         {
             var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPos.z = 0f;
             var dir = (mouseWorldPos - transform.position).normalized;
             var prj = GameManager.Instance.projectiles.GetPooledObject("Mage-Bolt");
             prj.transform.position = transform.position;
-            var prjComp = prj.GetComponent<Projectile>();
+            var prjComp = prj.GetComponent<MageProjectile>();
             prjComp.Setup(dir,
                              GameManager.Instance.settings.projectileSpeed,
-                             damage + _bonusDamage,
-                             true);
+                             damage + _bonusDamage);
             prj.SetActive(true);
             return prjComp;
         }

@@ -8,9 +8,9 @@ namespace Perks
     public class LifeSteal : AttackModifierPerk
     {
         public float healPercentage;
-        public override void ModifyAttack(Player.Player player, Projectile projectile)
+        public override void ModifyAttack(Player.Player player, PlayerProjectile projectile)
         {
-            player.Heal(projectile.Damage * healPercentage);
+            player.Heal(projectile.ProjectileDamage * healPercentage);
         }
     }
 }

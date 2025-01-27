@@ -8,6 +8,6 @@ namespace Perks
     {
         [Header("Priority, 0 = Max")]
         public byte priority;
-        public abstract void ModifyAttack(Player.Player player, Projectile projectile);
+        public abstract void ModifyAttack(Player.Player player, PlayerProjectile projectile);
     }
 }

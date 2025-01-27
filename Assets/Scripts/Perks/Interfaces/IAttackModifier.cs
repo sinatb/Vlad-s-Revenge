@@ -4,6 +4,6 @@ namespace Perks.Interfaces
 {
     public interface IAttackModifier
     {
-        public void ModifyAttack(Player.Player player, Projectile projectile);
+        public void ModifyAttack(Player.Player player, PlayerProjectile projectile);
     }
 }
