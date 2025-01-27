@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Projectiles
 {
-    public class PlayerProjectile : Projectile
+    public abstract class PlayerProjectile : Projectile
     {
         private TimedEffect _effect;
         private float       _lifeSteal;       
@@ -35,14 +35,17 @@ namespace Projectiles
                 gameObject.SetActive(false);
             }else if (other.gameObject.CompareTag("Enemy"))
             {
+                var enemy = other.gameObject.GetComponent<BaseEnemy>();
                 if (_effect != null)
                 {
-                    other.gameObject.GetComponent<BaseEnemy>().AddEffect(_effect);
+                    enemy.AddEffect(_effect);
                 }
-                other.gameObject.GetComponent<BaseEnemy>().TakeDamage(Damage);
+                enemy.TakeDamage(Damage);
+                OnDamageDealt(enemy);
                 GameManager.Instance.player.Heal(Damage*_lifeSteal);
                 gameObject.SetActive(false);
             } 
         }
+        protected abstract void OnDamageDealt(BaseEnemy enemy);
     }
 }

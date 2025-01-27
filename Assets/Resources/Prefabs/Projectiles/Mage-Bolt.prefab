@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5192557789912213730}
   - component: {fileID: 8045303118279516058}
   - component: {fileID: 2896777150081974486}
-  - component: {fileID: 8437492271632014660}
+  - component: {fileID: 1793761230802347886}
   m_Layer: 0
   m_Name: Mage-Bolt
   m_TagString: Untagged
@@ -153,7 +153,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.27, y: -0.03}
   m_Radius: 0.15
---- !u!114 &8437492271632014660
+--- !u!114 &1793761230802347886
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,6 +162,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3845802436499342842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26ba2cb6932e45658a4e283ef28ecf78, type: 3}
+  m_Script: {fileID: 11500000, guid: ba2a236f5f614dcdb1949884d1306f96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
