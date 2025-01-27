@@ -19,9 +19,13 @@ namespace Projectiles
             {
                 if (rc.transform.CompareTag("Enemy") && rc.transform != enemy.transform)
                 {
-                    var enemyComponent = rc.transform.GetComponent<BaseEnemy>();
-                    enemyComponent.TakeDamage(ProjectileDamage);
-                    ctr++;
+                    var viewPos = Camera.main?.WorldToViewportPoint(rc.transform.position);
+                    if (viewPos?.x is >= 0 and <= 1 && viewPos?.y is >= 0 and <= 1 && viewPos?.z > 0)
+                    {
+                        var enemyComponent = rc.transform.GetComponent<BaseEnemy>();
+                        enemyComponent.TakeDamage(ProjectileDamage);
+                        ctr++;
+                    }
                 }
                 if (ctr == Aoe)
                     return;
