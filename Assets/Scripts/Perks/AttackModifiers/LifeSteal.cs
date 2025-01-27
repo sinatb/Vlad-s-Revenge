@@ -1,8 +1,7 @@
-﻿using Perks.Interfaces;
-using Projectiles;
+﻿using Projectiles;
 using UnityEngine;
 
-namespace Perks
+namespace Perks.AttackModifiers
 {
     [CreateAssetMenu(menuName = "Perks/AttackModifier/LifeSteal", fileName = "LifeSteal")]
     public class LifeSteal : AttackModifierPerk
@@ -10,7 +9,7 @@ namespace Perks
         public float healPercentage;
         public override void ModifyAttack(Player.Player player, PlayerProjectile projectile)
         {
-            player.Heal(projectile.ProjectileDamage * healPercentage);
+            projectile.AddLifeSteal(healPercentage);
         }
     }
 }

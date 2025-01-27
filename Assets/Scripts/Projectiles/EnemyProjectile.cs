@@ -2,7 +2,7 @@
 
 namespace Projectiles
 {
-    public class HunterProjectile : PlayerProjectile
+    public class EnemyProjectile : Projectile
     {
         protected override void OnCollisionEnter2D(Collision2D other)
         {

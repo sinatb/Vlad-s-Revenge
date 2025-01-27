@@ -1,7 +1,7 @@
 ﻿using Projectiles;
 using UnityEngine;
 
-namespace Perks
+namespace Perks.AttackModifiers
 {
     [CreateAssetMenu(menuName = "Perks/AttackModifier/CriticalDamage", fileName = "CriticalDamage")]
     public class CriticalDamage : AttackModifierPerk

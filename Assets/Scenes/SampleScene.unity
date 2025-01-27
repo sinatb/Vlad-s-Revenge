@@ -2754,6 +2754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classData: {fileID: 11400000, guid: d1a9d12a8421ffb47b11801362369c1c, type: 2}
   blood: 0
+  _health: 0
 --- !u!61 &1291500593
 BoxCollider2D:
   m_ObjectHideFlags: 0

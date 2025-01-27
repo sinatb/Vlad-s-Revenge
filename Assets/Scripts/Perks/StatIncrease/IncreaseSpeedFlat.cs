@@ -1,7 +1,7 @@
 ﻿using Perks.Interfaces;
 using UnityEngine;
 
-namespace Perks
+namespace Perks.StatIncrease
 {
     [CreateAssetMenu(menuName = "Perks/IncreaseSpeedFlat", fileName = "IncreaseSpeedFlat")]
     public class IncreaseSpeedFlat : Perk, IStatsIncrease

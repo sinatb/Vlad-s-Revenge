@@ -1,7 +1,7 @@
 ﻿using Perks.Interfaces;
 using UnityEngine;
 
-namespace Perks
+namespace Perks.StatIncrease
 {
     [CreateAssetMenu(menuName = "Perks/IncreaseHealth", fileName = "IncreaseHealth")]
     public class IncreaseHealthRelative : Perk, IStatsIncrease

@@ -1,9 +1,8 @@
 ﻿using Effects;
-using Perks.Interfaces;
 using Projectiles;
 using UnityEngine;
 
-namespace Perks
+namespace Perks.AttackModifiers
 {
     [CreateAssetMenu (menuName = "Perks/AttackModifier/VenomAttackPerk", fileName = "VenomAttackPerk")]
     public class VenomAttackPerk : AttackModifierPerk

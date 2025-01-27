@@ -12,7 +12,7 @@ namespace Player.Mage
         private FixedSizeList<SpellShard> _spellShards;
         private PlayerUI _ui;
         private float    _bonusDamage;
-        private float    _bonusHeal;
+        private float    _bonusLifeSteal;
         private Player   _player;
         private void Awake()
         {
@@ -33,10 +33,11 @@ namespace Player.Mage
             var dir = (mouseWorldPos - transform.position).normalized;
             var prj = GameManager.Instance.projectiles.GetPooledObject("Mage-Bolt");
             prj.transform.position = transform.position;
-            var prjComp = prj.GetComponent<MageProjectile>();
+            var prjComp = prj.GetComponent<PlayerProjectile>();
             prjComp.Setup(dir,
                              GameManager.Instance.settings.projectileSpeed,
                              damage + _bonusDamage);
+            prjComp.AddLifeSteal(_bonusLifeSteal);
             prj.SetActive(true);
             return prjComp;
         }
@@ -44,6 +45,7 @@ namespace Player.Mage
         public override void Special()
         {
              _bonusDamage = _spellShards.Where(shard => shard == SpellShard.Vis).Sum(shard => 10);
+             _bonusLifeSteal = _spellShards.Where(shard => shard == SpellShard.San).Sum(shard => 0.05f);
         }
 
         public override void AdditionalControls()

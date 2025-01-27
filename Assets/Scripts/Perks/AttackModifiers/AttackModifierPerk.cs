@@ -2,7 +2,7 @@
 using Projectiles;
 using UnityEngine;
 
-namespace Perks
+namespace Perks.AttackModifiers
 {
     public abstract class AttackModifierPerk : Perk, IAttackModifier
     {

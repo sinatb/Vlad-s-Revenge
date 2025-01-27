@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using Effects;
 using Managers;
 using Perks;
+using Perks.AttackModifiers;
 using Perks.Interfaces;
+using Perks.StatIncrease;
 using Player.Mage;
 using Projectiles;
 using UnityEngine;
@@ -18,7 +20,7 @@ namespace Player
         public int               blood;
         public List<Perk>        Perks => _perks;
         //------private variables-----
-        private float            _health;
+        public float            _health;
         private float            _maximumHealth;
         private int              _speed;
         private int              _maximumSpeed;
