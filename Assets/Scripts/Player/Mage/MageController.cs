@@ -1,11 +1,13 @@
 ﻿using Managers;
+using Player.Util;
 using Projectiles;
 using UnityEngine;
 
-namespace Player
+namespace Player.Mage
 {
     public class MageController : PlayerController
     {
+        private CircularList<SpellShard> _spellShards; 
         public override Projectile Attack(float damage)
         {
             var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -25,6 +27,22 @@ namespace Player
         public override void Special()
         {
             Debug.Log("Special");
+        }
+
+        public override void AdditionalControls()
+        {
+            if (Input.GetKeyUp(KeyCode.Alpha1))
+            {
+                _spellShards.Add(SpellShard.Vis);
+            }
+            else if (Input.GetKeyUp(KeyCode.Alpha2))
+            {
+                _spellShards.Add(SpellShard.San);
+            }
+            else if (Input.GetKeyUp(KeyCode.Alpha3))
+            {
+                _spellShards.Add(SpellShard.Ful);
+            }
         }
     }
 }

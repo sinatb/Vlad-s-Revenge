@@ -5,6 +5,7 @@ using Effects;
 using Managers;
 using Perks;
 using Perks.Interfaces;
+using Player.Mage;
 using Projectiles;
 using UnityEngine;
 
@@ -45,6 +46,11 @@ namespace Player
             _ui.avatar.color = Color.white;
             _perks = new List<Perk>();
             _onAttack = new SortedList<byte, Action<Player, Projectile>>();
+            gameObject.AddComponent<SpriteRenderer>().sprite = classData.model;
+            _ui.specialImage.sprite = classData.special;
+            _renderer = gameObject.GetComponent<SpriteRenderer>();
+            _renderer.sortingOrder = 2;
+            SetController();
         }
         private IEnumerator AttackCooldown()
         {
@@ -69,14 +75,6 @@ namespace Player
                 case "Hunter" :
                     break;
             }
-        }
-        private void Start()
-        {
-            gameObject.AddComponent<SpriteRenderer>().sprite = classData.model;
-            _ui.specialImage.sprite = classData.special;
-            _renderer = gameObject.GetComponent<SpriteRenderer>();
-            _renderer.sortingOrder = 2;
-            SetController();
         }
         private void Update()
         {
@@ -125,7 +123,6 @@ namespace Player
             }
             #endregion
         }
-
         #region Stat Increase Methods
         /// <summary>
         /// Increases the player's health by a percentage
@@ -155,7 +152,6 @@ namespace Player
             _damage = _maximumDamage;
         }
         #endregion
-
         public void Heal(float amount)
         {
             if (_health + amount < _maximumHealth)
