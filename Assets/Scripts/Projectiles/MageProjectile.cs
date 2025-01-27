@@ -17,6 +17,8 @@ namespace Projectiles
             var ctr = 0;
             foreach (var rc in points.ToList())
             {
+                if (ctr >= Aoe)
+                    return;
                 if (rc.transform.CompareTag("Enemy") && rc.transform != enemy.transform)
                 {
                     var viewPos = Camera.main?.WorldToViewportPoint(rc.transform.position);
@@ -27,8 +29,6 @@ namespace Projectiles
                         ctr++;
                     }
                 }
-                if (ctr == Aoe)
-                    return;
             }
         }
     }
