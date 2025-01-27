@@ -1,4 +1,5 @@
-﻿using Managers;
+﻿using System;
+using Managers;
 using Player.Util;
 using Projectiles;
 using UnityEngine;
@@ -7,7 +8,19 @@ namespace Player.Mage
 {
     public class MageController : PlayerController
     {
-        private CircularList<SpellShard> _spellShards; 
+        private FixedSizeList<SpellShard> _spellShards;
+        private PlayerUI _ui;
+        private void Awake()
+        {
+            _ui = gameObject.GetComponent<PlayerUI>();
+            _spellShards = new FixedSizeList<SpellShard>(3);
+            for (int i = 0; i < 3; i++)
+            {
+                _spellShards.Add(SpellShard.Vis);
+            }
+            _ui.UpdateMageSpecialUI(_spellShards);
+        }
+
         public override Projectile Attack(float damage)
         {
             var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -34,14 +47,17 @@ namespace Player.Mage
             if (Input.GetKeyUp(KeyCode.Alpha1))
             {
                 _spellShards.Add(SpellShard.Vis);
+                _ui.UpdateMageSpecialUI(_spellShards);
             }
             else if (Input.GetKeyUp(KeyCode.Alpha2))
             {
                 _spellShards.Add(SpellShard.San);
+                _ui.UpdateMageSpecialUI(_spellShards);
             }
             else if (Input.GetKeyUp(KeyCode.Alpha3))
             {
                 _spellShards.Add(SpellShard.Ful);
+                _ui.UpdateMageSpecialUI(_spellShards);
             }
         }
     }

@@ -41,15 +41,12 @@ namespace Player
             _maximumSpeed = _speed;
             _damage = classData.damage;
             _maximumDamage = _damage;
-            _ui = GetComponent<PlayerUI>();
-            _ui.avatar.sprite = classData.model;
-            _ui.avatar.color = Color.white;
             _perks = new List<Perk>();
             _onAttack = new SortedList<byte, Action<Player, Projectile>>();
             gameObject.AddComponent<SpriteRenderer>().sprite = classData.model;
-            _ui.specialImage.sprite = classData.special;
             _renderer = gameObject.GetComponent<SpriteRenderer>();
             _renderer.sortingOrder = 2;
+            SetUI();
             SetController();
         }
         private IEnumerator AttackCooldown()
@@ -61,6 +58,15 @@ namespace Player
         public void AddBlood(int bonus)
         {
             blood += bonus;
+        }
+        private void SetUI()
+        {
+            _ui = GetComponent<PlayerUI>();
+            if (classData.name == "Mage")
+                _ui.mageSpecialUI.SetActive(true);
+            _ui.specialImage.sprite = classData.special;
+            _ui.avatar.sprite = classData.model;
+            _ui.avatar.color = Color.white;
         }
         private void SetController()
         {
@@ -122,6 +128,7 @@ namespace Player
                 StartCoroutine(_ui.SpecialCooldown(classData.specialCooldown));
             }
             #endregion
+            _controller.AdditionalControls();
         }
         #region Stat Increase Methods
         /// <summary>

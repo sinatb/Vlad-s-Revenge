@@ -79,7 +79,6 @@ namespace Player
         }
         public abstract Projectile Attack(float damage);
         public abstract void Special();
-
         public abstract void AdditionalControls();
     }
 }
