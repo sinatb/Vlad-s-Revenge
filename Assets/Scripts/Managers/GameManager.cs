@@ -61,6 +61,10 @@ namespace Managers
         {
             UIManager.ShowRoomLoadScreen();
             yield return new WaitUntil(() => LoadTrigger);
+            if (level == 1 && room == 0)
+            {
+                player.SetUpPlayer();
+            }
             ActiveRoom?.Deactivate();
             ActiveRoom = _rooms[room];
             ActiveRoom.Activate();
@@ -82,10 +86,9 @@ namespace Managers
                 Destroy(gameObject);
             }
         }
-
-        private IEnumerator Start()
+        
+        public IEnumerator StartGame()
         {
-            
             yield return new WaitUntil(() => styles.TrueForAll(s=>s.isReady) &&
                                              enemies.isReady &&
                                              projectiles.isReady);
@@ -94,7 +97,6 @@ namespace Managers
             _rooms = generator.GenerateRooms();
             StartCoroutine(LoadNextRoom());
         }
-
         private void Update()
         {
             if (IsGameRunning && (!ActiveRoom.hasEnemy || Input.GetKeyUp(KeyCode.X)))

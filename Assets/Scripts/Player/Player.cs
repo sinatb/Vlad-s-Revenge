@@ -20,22 +20,24 @@ namespace Player
         public int               blood;
         public List<Perk>        Perks => _perks;
         //------private variables-----
-        public float            _health;
-        private float            _maximumHealth;
-        private int              _speed;
-        private int              _maximumSpeed;
-        private float            _damage;
-        private float            _maximumDamage;
-        private PlayerController _controller;
-        private bool             _canAttack = true;
-        private bool             _flipped;
-        private SpriteRenderer   _renderer;
-        private List<Perk>       _perks;
-        private PlayerUI         _ui;
+        public float                                              _health;
+        private float                                             _maximumHealth;
+        private int                                               _speed;
+        private int                                               _maximumSpeed;
+        private float                                             _damage;
+        private float                                             _maximumDamage;
+        private PlayerController                                  _controller;
+        private bool                                              _canAttack = true;
+        private bool                                              _flipped;
+        private SpriteRenderer                                    _renderer;
+        private List<Perk>                                        _perks;
+        private PlayerUI                                          _ui;
         private SortedList<byte, Action<Player,PlayerProjectile>> _onAttack;
+        private bool                                              _set;
         
         //TODO Should be transformed to setup later
-        private void Awake()
+        #region Setup
+        public void SetUpPlayer()
         {
             _health = classData.maximumHealth;
             _maximumHealth = _health;
@@ -50,19 +52,11 @@ namespace Player
             _renderer.sortingOrder = 2;
             SetUI();
             SetController();
-        }
-        private IEnumerator AttackCooldown()
-        {
-            _canAttack = false;
-            yield return new WaitForSeconds(classData.attackCooldown);
-            _canAttack = true;
-        }
-        public void AddBlood(int bonus)
-        {
-            blood += bonus;
+            _set = true;
         }
         private void SetUI()
         {
+            transform.GetChild(1).gameObject.SetActive(true);
             _ui = GetComponent<PlayerUI>();
             if (classData.name == "Mage")
                 _ui.mageSpecialUI.SetActive(true);
@@ -84,8 +78,10 @@ namespace Player
                     break;
             }
         }
+        #endregion
         private void Update()
         {
+            if (!_set) return;
             #region Movement
             if (Input.GetKeyUp(KeyCode.A))
             {
@@ -161,6 +157,7 @@ namespace Player
             _damage = _maximumDamage;
         }
         #endregion
+        #region Utility Methods
         public void Heal(float amount)
         {
             if (_health + amount < _maximumHealth)
@@ -181,17 +178,25 @@ namespace Player
             {
                 i.IncreaseStats(this);
             }
-
             if (p is AttackModifierPerk modifier)
             {
                 _onAttack.Add(modifier.priority ,modifier.ModifyAttack);
             }
-
             if (p is PermanentEnemyEffectPerk effectPerk)
             {
                 GameManager.Instance.enemies.ApplyEffectOnAll(effectPerk.effect);
             }
-            
         }
+        private IEnumerator AttackCooldown()
+        {
+            _canAttack = false;
+            yield return new WaitForSeconds(classData.attackCooldown);
+            _canAttack = true;
+        }
+        public void AddBlood(int bonus)
+        {
+            blood += bonus;
+        }
+        #endregion
     }
 }

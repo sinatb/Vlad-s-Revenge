@@ -6,6 +6,7 @@ namespace Managers
     public class UIManager : MonoBehaviour
     {
         [SerializeField] private GameObject      loadScreen;
+        [SerializeField] private GameObject      startScreen;
         public static bool IsInLoad;
         public static bool IsInPerkSelect;
         private static UIManager _instance;
@@ -43,5 +44,10 @@ namespace Managers
             IsInLoad = false;
         }
 
+        public void OnStartGameClick()
+        {
+            StartCoroutine(GameManager.Instance.StartGame());
+            startScreen.SetActive(false);
+        }
     }
 }
