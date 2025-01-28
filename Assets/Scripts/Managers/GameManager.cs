@@ -94,7 +94,6 @@ namespace Managers
                                              projectiles.isReady);
             level = 0;
             room = 0;
-            _rooms = generator.GenerateRooms();
             StartCoroutine(LoadNextLevel());
         }
         private void Update()

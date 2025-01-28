@@ -1,5 +1,5 @@
-﻿using Perks.Interfaces;
-using Projectiles;
+﻿using Combat;
+using Perks.Interfaces;
 using UnityEngine;
 
 namespace Perks.AttackModifiers
@@ -8,6 +8,6 @@ namespace Perks.AttackModifiers
     {
         [Header("Priority, 0 = Max")]
         public byte priority;
-        public abstract void ModifyAttack(Player.Player player, PlayerProjectile projectile);
+        public abstract void ModifyAttack(Player.Player player, PlayerAttackData attackData);
     }
 }

@@ -1,6 +1,6 @@
 using System;
+using Combat;
 using Managers;
-using Projectiles;
 using UnityEngine;
 
 namespace Player
@@ -77,7 +77,7 @@ namespace Player
             }
             gameObject.transform.Translate(DirectionToVec2(dir)* speed);
         }
-        public abstract PlayerProjectile Attack(float damage);
+        public abstract PlayerAttackData Attack(float damage);
         public abstract void Special();
         public abstract void AdditionalControls();
     }

@@ -1,5 +1,5 @@
-﻿using Effects;
-using Projectiles;
+﻿using Combat;
+using Effects;
 using UnityEngine;
 
 namespace Perks.AttackModifiers
@@ -8,9 +8,9 @@ namespace Perks.AttackModifiers
     public class VenomAttackPerk : AttackModifierPerk
     {
         public TimedEffect venomEffect;
-        public override void ModifyAttack(Player.Player player, PlayerProjectile projectile)
+        public override void ModifyAttack(Player.Player player, PlayerAttackData attackData)
         {
-            projectile.SetEffect(venomEffect);
+            attackData.SetEffect(venomEffect);
         }
     }
 }

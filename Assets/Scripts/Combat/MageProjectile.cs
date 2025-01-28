@@ -2,7 +2,7 @@
 using Enemies;
 using UnityEngine;
 
-namespace Projectiles
+namespace Combat
 {
     public class MageProjectile : PlayerProjectile
     {
@@ -25,7 +25,7 @@ namespace Projectiles
                     if (viewPos?.x is >= 0 and <= 1 && viewPos?.y is >= 0 and <= 1 && viewPos?.z > 0)
                     {
                         var enemyComponent = rc.transform.GetComponent<BaseEnemy>();
-                        enemyComponent.TakeDamage(ProjectileDamage);
+                        enemyComponent.TakeDamage(PlayerAttack.Damage);
                         ctr++;
                     }
                 }

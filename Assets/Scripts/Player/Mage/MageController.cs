@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
+using Combat;
 using Managers;
 using Player.Util;
-using Projectiles;
 using UnityEngine;
 
 namespace Player.Mage
@@ -27,21 +27,21 @@ namespace Player.Mage
             _ui.UpdateMageSpecialUI(_spellShards);
         }
 
-        public override PlayerProjectile Attack(float damage)
+        public override PlayerAttackData Attack(float damage)
         {
             var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPos.z = 0f;
             var dir = (mouseWorldPos - transform.position).normalized;
             var prj = GameManager.Instance.projectiles.GetPooledObject("Mage-Bolt");
+            prj.SetActive(true);
             prj.transform.position = transform.position;
             var prjComp = prj.GetComponent<MageProjectile>();
             prjComp.Setup(dir,
                              GameManager.Instance.settings.projectileSpeed,
                              damage + _bonusDamage);
-            prjComp.AddLifeSteal(_bonusLifeSteal);
+            prjComp.PlayerAttack.AddLifeSteal(_bonusLifeSteal);
             prjComp.Aoe = _bonusAoe;
-            prj.SetActive(true);
-            return prjComp;
+            return prjComp.PlayerAttack;
         }
 
         public override void Special()

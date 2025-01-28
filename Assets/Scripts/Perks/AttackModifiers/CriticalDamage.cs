@@ -1,4 +1,4 @@
-﻿using Projectiles;
+﻿using Combat;
 using UnityEngine;
 
 namespace Perks.AttackModifiers
@@ -8,11 +8,11 @@ namespace Perks.AttackModifiers
     {
         public float criticalChance;
         public float criticalMultiplier;
-        public override void ModifyAttack(Player.Player player, PlayerProjectile projectile)
+        public override void ModifyAttack(Player.Player player, PlayerAttackData attackData)
         {
             var rnd = Random.Range(0.0f, 1.0f);
             if (rnd > criticalChance) return;
-            projectile.MakeCritical(criticalMultiplier);
+            attackData.MakeCritical(criticalMultiplier);
         }
     }
 }

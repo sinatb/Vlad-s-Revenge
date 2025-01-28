@@ -1,9 +1,9 @@
-﻿using Projectiles;
+﻿using Combat;
 
 namespace Perks.Interfaces
 {
     public interface IAttackModifier
     {
-        public void ModifyAttack(Player.Player player, PlayerProjectile projectile);
+        public void ModifyAttack(Player.Player player, PlayerAttackData attackData);
     }
 }

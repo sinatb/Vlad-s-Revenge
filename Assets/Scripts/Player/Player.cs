@@ -1,14 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Combat;
 using Effects;
 using Managers;
 using Perks;
 using Perks.AttackModifiers;
 using Perks.Interfaces;
 using Perks.StatIncrease;
+using Player.Berserker;
+using Player.Hunter;
 using Player.Mage;
-using Projectiles;
 using UnityEngine;
 
 namespace Player
@@ -31,7 +33,7 @@ namespace Player
         private SpriteRenderer                                    _renderer;
         private List<Perk>                                        _perks;
         private PlayerUI                                          _ui;
-        private SortedList<byte, Action<Player,PlayerProjectile>> _onAttack;
+        private SortedList<byte, Action<Player,PlayerAttackData>>     _onAttack;
         private bool                                              _set;
         private PlayerClassData                                   _classData;
         
@@ -46,7 +48,7 @@ namespace Player
             _damage = _classData.damage;
             _maximumDamage = _damage;
             _perks = new List<Perk>();
-            _onAttack = new SortedList<byte, Action<Player, PlayerProjectile>>();
+            _onAttack = new SortedList<byte, Action<Player, PlayerAttackData>>();
             gameObject.AddComponent<SpriteRenderer>().sprite = _classData.model;
             _renderer = gameObject.GetComponent<SpriteRenderer>();
             _renderer.sortingOrder = 2;
@@ -72,9 +74,13 @@ namespace Player
                     gameObject.AddComponent<MageController>();
                     _controller = GetComponent<MageController>();
                     break;
-                case "Berserker" : 
+                case "Berserker" :
+                    gameObject.AddComponent<BerserkerController>();
+                    _controller = GetComponent<BerserkerController>();
                     break;
                 case "Hunter" :
+                    gameObject.AddComponent<HunterController>();
+                    _controller = GetComponent<HunterController>();
                     break;
             }
         }

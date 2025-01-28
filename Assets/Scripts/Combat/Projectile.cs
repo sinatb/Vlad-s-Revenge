@@ -1,9 +1,6 @@
-﻿using System;
-using Effects;
-using Enemies;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Projectiles
+namespace Combat
 {
     public abstract class Projectile : MonoBehaviour
     {

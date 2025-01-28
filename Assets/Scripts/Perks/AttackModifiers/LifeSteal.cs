@@ -1,4 +1,4 @@
-﻿using Projectiles;
+﻿using Combat;
 using UnityEngine;
 
 namespace Perks.AttackModifiers
@@ -7,9 +7,9 @@ namespace Perks.AttackModifiers
     public class LifeSteal : AttackModifierPerk
     {
         public float healPercentage;
-        public override void ModifyAttack(Player.Player player, PlayerProjectile projectile)
+        public override void ModifyAttack(Player.Player player, PlayerAttackData attackData)
         {
-            projectile.AddLifeSteal(healPercentage);
+            attackData.AddLifeSteal(healPercentage);
         }
     }
 }
