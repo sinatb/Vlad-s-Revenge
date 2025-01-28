@@ -45,6 +45,10 @@ namespace Managers
             room = 0;
             _rooms = generator.GenerateRooms();
             yield return new WaitUntil(() => LoadTrigger);
+            if (level == 1 && room == 0)
+            {
+                player.SetUpPlayer(UIManager.Instance.selectedClassData);
+            }
             ActiveRoom?.Deactivate();
             ActiveRoom = _rooms[room];
             ActiveRoom.Activate();
@@ -61,10 +65,6 @@ namespace Managers
         {
             UIManager.ShowRoomLoadScreen();
             yield return new WaitUntil(() => LoadTrigger);
-            if (level == 1 && room == 0)
-            {
-                player.SetUpPlayer(UIManager.Instance.selectedClassData);
-            }
             ActiveRoom?.Deactivate();
             ActiveRoom = _rooms[room];
             ActiveRoom.Activate();
@@ -92,10 +92,10 @@ namespace Managers
             yield return new WaitUntil(() => styles.TrueForAll(s=>s.isReady) &&
                                              enemies.isReady &&
                                              projectiles.isReady);
-            level = 1;
+            level = 0;
             room = 0;
             _rooms = generator.GenerateRooms();
-            StartCoroutine(LoadNextRoom());
+            StartCoroutine(LoadNextLevel());
         }
         private void Update()
         {
