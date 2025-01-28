@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Player;
 using TMPro;
 using UnityEngine;
 
@@ -7,6 +9,9 @@ namespace Managers
     {
         [SerializeField] private GameObject      loadScreen;
         [SerializeField] private GameObject      startScreen;
+        [SerializeField] private GameObject      heroSelectScreen;
+        public List<PlayerClassData>             playerClasses;
+        public PlayerClassData                   selectedClassData;
         public static bool IsInLoad;
         public static bool IsInPerkSelect;
         private static UIManager _instance;
@@ -46,10 +51,16 @@ namespace Managers
 
         public void OnStartGameClick()
         {
-            StartCoroutine(GameManager.Instance.StartGame());
             startScreen.SetActive(false);
+            heroSelectScreen.SetActive(true);
         }
 
+        public void OnSelectHeroClick(int index)
+        {
+            heroSelectScreen.SetActive(false);
+            selectedClassData = playerClasses[index];
+            StartCoroutine(GameManager.Instance.StartGame());
+        }
         public void OnExitClick()
         {
             Application.Quit();

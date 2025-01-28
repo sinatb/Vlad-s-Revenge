@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d80d83910a4f3483de14dcec13d0d3, type: 3}
+  m_Name: Berserker
+  m_EditorClassIdentifier: 
+  className: Berserker
+  model: {fileID: 236303579, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
+  special: {fileID: 8825527810689723621, guid: cd208f7a52e66a147b40bc58bf066a70, type: 3}
+  maximumHealth: 250
+  maximumSpeed: 1
+  damage: 50
+  attackCooldown: 1
+  specialCooldown: 20

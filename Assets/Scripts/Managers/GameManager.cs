@@ -63,7 +63,7 @@ namespace Managers
             yield return new WaitUntil(() => LoadTrigger);
             if (level == 1 && room == 0)
             {
-                player.SetUpPlayer();
+                player.SetUpPlayer(UIManager.Instance.selectedClassData);
             }
             ActiveRoom?.Deactivate();
             ActiveRoom = _rooms[room];

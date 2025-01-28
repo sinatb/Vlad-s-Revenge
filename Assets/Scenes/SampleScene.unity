@@ -1757,6 +1757,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadScreen: {fileID: 336002979}
   startScreen: {fileID: 1587309119}
+  heroSelectScreen: {fileID: 766773906}
+  playerClasses:
+  - {fileID: 11400000, guid: d1a9d12a8421ffb47b11801362369c1c, type: 2}
+  - {fileID: 11400000, guid: 3e5284e9b78b40547b08b4becc4a4b2b, type: 2}
+  - {fileID: 11400000, guid: d1a9d12a8421ffb47b11801362369c1c, type: 2}
+  selectedClassData: {fileID: 0}
 --- !u!1 &336002979
 GameObject:
   m_ObjectHideFlags: 0
@@ -2004,7 +2010,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 374682871}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 295981726}
+        m_TargetAssemblyTypeName: Managers.UIManager, Assembly-CSharp
+        m_MethodName: OnSelectHeroClick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &374682871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3231,7 +3249,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 562087535}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 295981726}
+        m_TargetAssemblyTypeName: Managers.UIManager, Assembly-CSharp
+        m_MethodName: OnSelectHeroClick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &562087535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4682,7 +4712,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &766773907
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6647,7 +6677,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da65cb3cfc0cb7f468735c84e5b2207e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  classData: {fileID: 11400000, guid: d1a9d12a8421ffb47b11801362369c1c, type: 2}
   blood: 0
   _health: 0
 --- !u!61 &1291500593
@@ -7758,7 +7787,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1531127211}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 295981726}
+        m_TargetAssemblyTypeName: Managers.UIManager, Assembly-CSharp
+        m_MethodName: OnSelectHeroClick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1531127211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8139,7 +8180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1587309120
 RectTransform:
   m_ObjectHideFlags: 0

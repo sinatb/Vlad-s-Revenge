@@ -16,7 +16,6 @@ namespace Player
     public class Player : MonoBehaviour
     {
         //------public variables------
-        public PlayerClassData   classData;
         public int               blood;
         public List<Perk>        Perks => _perks;
         //------private variables-----
@@ -34,20 +33,21 @@ namespace Player
         private PlayerUI                                          _ui;
         private SortedList<byte, Action<Player,PlayerProjectile>> _onAttack;
         private bool                                              _set;
+        private PlayerClassData                                   _classData;
         
-        //TODO Should be transformed to setup later
         #region Setup
-        public void SetUpPlayer()
+        public void SetUpPlayer(PlayerClassData data)
         {
-            _health = classData.maximumHealth;
+            _classData = data;
+            _health = _classData.maximumHealth;
             _maximumHealth = _health;
-            _speed = classData.maximumSpeed;
+            _speed = _classData.maximumSpeed;
             _maximumSpeed = _speed;
-            _damage = classData.damage;
+            _damage = _classData.damage;
             _maximumDamage = _damage;
             _perks = new List<Perk>();
             _onAttack = new SortedList<byte, Action<Player, PlayerProjectile>>();
-            gameObject.AddComponent<SpriteRenderer>().sprite = classData.model;
+            gameObject.AddComponent<SpriteRenderer>().sprite = _classData.model;
             _renderer = gameObject.GetComponent<SpriteRenderer>();
             _renderer.sortingOrder = 2;
             SetUI();
@@ -58,15 +58,15 @@ namespace Player
         {
             transform.GetChild(1).gameObject.SetActive(true);
             _ui = GetComponent<PlayerUI>();
-            if (classData.name == "Mage")
+            if (_classData.name == "Mage")
                 _ui.mageSpecialUI.SetActive(true);
-            _ui.specialImage.sprite = classData.special;
-            _ui.avatar.sprite = classData.model;
+            _ui.specialImage.sprite = _classData.special;
+            _ui.avatar.sprite = _classData.model;
             _ui.avatar.color = Color.white;
         }
         private void SetController()
         {
-            switch (classData.name)
+            switch (_classData.name)
             {
                 case "Mage":
                     gameObject.AddComponent<MageController>();
@@ -123,7 +123,7 @@ namespace Player
             if (Input.GetMouseButtonUp(1) && _canAttack && _ui.CanSpecial)
             {
                 _controller.Special();
-                StartCoroutine(_ui.SpecialCooldown(classData.specialCooldown));
+                StartCoroutine(_ui.SpecialCooldown(_classData.specialCooldown));
             }
             #endregion
             _controller.AdditionalControls();
@@ -190,7 +190,7 @@ namespace Player
         private IEnumerator AttackCooldown()
         {
             _canAttack = false;
-            yield return new WaitForSeconds(classData.attackCooldown);
+            yield return new WaitForSeconds(_classData.attackCooldown);
             _canAttack = true;
         }
         public void AddBlood(int bonus)
