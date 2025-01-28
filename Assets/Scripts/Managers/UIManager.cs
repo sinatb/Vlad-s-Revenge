@@ -49,5 +49,10 @@ namespace Managers
             StartCoroutine(GameManager.Instance.StartGame());
             startScreen.SetActive(false);
         }
+
+        public void OnExitClick()
+        {
+            Application.Quit();
+        }
     }
 }
