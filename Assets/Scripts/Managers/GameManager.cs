@@ -49,6 +49,7 @@ namespace Managers
             ActiveRoom = _rooms[room];
             ActiveRoom.Activate();
             room++;
+            player.transform.position = ActiveRoom.GetRandomFloor();
             yield return new WaitUntil(() => !UIManager.IsInPerkSelect);
             LoadTrigger = false;
         }
