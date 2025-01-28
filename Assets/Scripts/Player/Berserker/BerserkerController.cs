@@ -1,12 +1,15 @@
 ﻿using Combat;
+using UnityEngine;
 
 namespace Player.Berserker
 {
     public class BerserkerController : PlayerController
     {
-        public override PlayerAttackData Attack(float damage)
+        public override void Attack(PlayerAttackData data)
         {
-            throw new System.NotImplementedException();
+            var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorldPos.z = 0f;
+            var dir = (mouseWorldPos - transform.position).normalized;
         }
 
         public override void Special()

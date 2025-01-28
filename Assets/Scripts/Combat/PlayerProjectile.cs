@@ -10,9 +10,9 @@ namespace Combat
     {
         public PlayerAttackData PlayerAttack;
 
-        private void OnEnable()
+        public void SetPlayerAttackData(PlayerAttackData data)
         {
-            PlayerAttack = new PlayerAttackData(Damage);
+            PlayerAttack = data;
         }
 
         protected override void OnCollisionEnter2D(Collision2D other)

@@ -3,8 +3,7 @@
 namespace Player.Hunter
 {
     public class HunterController : PlayerController
-    {
-        public override PlayerAttackData Attack(float damage)
+    { public override void Attack(PlayerAttackData data)
         {
             throw new System.NotImplementedException();
         }

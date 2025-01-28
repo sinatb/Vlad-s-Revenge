@@ -27,7 +27,7 @@ namespace Player.Mage
             _ui.UpdateMageSpecialUI(_spellShards);
         }
 
-        public override PlayerAttackData Attack(float damage)
+        public override void Attack(PlayerAttackData data)
         {
             var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPos.z = 0f;
@@ -38,10 +38,10 @@ namespace Player.Mage
             var prjComp = prj.GetComponent<MageProjectile>();
             prjComp.Setup(dir,
                              GameManager.Instance.settings.projectileSpeed,
-                             damage + _bonusDamage);
+                             data.Damage + _bonusDamage);
+            prjComp.SetPlayerAttackData(data);
             prjComp.PlayerAttack.AddLifeSteal(_bonusLifeSteal);
             prjComp.Aoe = _bonusAoe;
-            return prjComp.PlayerAttack;
         }
 
         public override void Special()

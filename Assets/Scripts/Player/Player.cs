@@ -119,11 +119,13 @@ namespace Player
             #region Attack
             if (Input.GetMouseButtonUp(0) && _canAttack)
             {
-                var prj = _controller.Attack(_damage);
+                var data = new PlayerAttackData(_damage);
                 foreach (var by in _onAttack)
                 {
-                    by.Value?.Invoke(this,prj);
+                    by.Value?.Invoke(this,data);
                 }
+                Debug.Log(data.Effect);
+                _controller.Attack(data);
                 StartCoroutine(AttackCooldown());
             }
             if (Input.GetMouseButtonUp(1) && _canAttack && _ui.CanSpecial)
