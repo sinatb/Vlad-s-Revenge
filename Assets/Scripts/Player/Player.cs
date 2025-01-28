@@ -19,6 +19,7 @@ namespace Player
     {
         //------public variables------
         public int               blood;
+        public bool              isInvincible;
         public List<Perk>        Perks => _perks;
         //------private variables-----
         public float                                              _health;
@@ -124,7 +125,6 @@ namespace Player
                 {
                     by.Value?.Invoke(this,data);
                 }
-                Debug.Log(data.Effect);
                 _controller.Attack(data);
                 StartCoroutine(AttackCooldown());
             }
@@ -175,6 +175,18 @@ namespace Player
             else
             {
                 _health = _maximumHealth;
+            }
+        }
+
+        public void TakeDamage(float amount)
+        {
+            if (isInvincible)
+                return;
+            if (_health - amount > 0)
+                _health -= amount;
+            else
+            {
+                //TODO Game Over
             }
         }
         public void AddPerk(Perk p)

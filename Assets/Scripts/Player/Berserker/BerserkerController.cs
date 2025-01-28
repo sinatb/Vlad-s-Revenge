@@ -1,4 +1,6 @@
-﻿using Combat;
+﻿using System.Collections;
+using System.Collections.Generic;
+using Combat;
 using Enemies;
 using Managers;
 using UnityEngine;
@@ -7,6 +9,7 @@ namespace Player.Berserker
 {
     public class BerserkerController : PlayerController
     {
+        private const float InvincibilityTime = 5.0f;
         public override void Attack(PlayerAttackData data)
         {
             var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -33,10 +36,16 @@ namespace Player.Berserker
                 }
             }
         }
-
+        private IEnumerator InvinicibilityCoroutine()
+        {
+            yield return new WaitForSeconds(InvincibilityTime);
+            GameManager.Instance.player.isInvincible = false;
+        }
         public override void Special()
         {
-            
+            var player = GetComponent<Player>();
+            player.isInvincible = true;
+            StartCoroutine(InvinicibilityCoroutine());
         }
 
         public override void AdditionalControls()
