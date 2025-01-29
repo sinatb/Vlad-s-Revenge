@@ -34,7 +34,7 @@ namespace Player
         private SpriteRenderer                                    _renderer;
         private List<Perk>                                        _perks;
         private PlayerUI                                          _ui;
-        private SortedList<byte, Action<Player,PlayerAttackData>>     _onAttack;
+        private SortedList<byte, Action<Player,PlayerAttackData>> _onAttack;
         private bool                                              _set;
         private PlayerClassData                                   _classData;
         
@@ -93,19 +93,27 @@ namespace Player
             if (Input.GetKeyUp(KeyCode.A))
             {
                 _controller.Move(Direction.Left, _speed);
-                if (_flipped)
+                if (_flipped && !_classData.flipSprite)
                 {
                     _renderer.flipX = false;
                     _flipped = false;
+                }else if (!_flipped && _classData.flipSprite)
+                {
+                    _renderer.flipX = true;
+                    _flipped = true;
                 }
             }
             else if (Input.GetKeyUp(KeyCode.D))
             {
                 _controller.Move(Direction.Right, _speed);
-                if (!_flipped)
+                if (!_flipped && !_classData.flipSprite)
                 {
                     _renderer.flipX = true;
                     _flipped = true;
+                } else if (_flipped && _classData.flipSprite)
+                {
+                    _renderer.flipX = false;
+                    _flipped = false;
                 }
             }
             else if (Input.GetKeyUp(KeyCode.W))

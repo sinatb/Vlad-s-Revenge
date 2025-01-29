@@ -13,5 +13,6 @@ namespace Player
         public float            damage;
         public float            attackCooldown;
         public float            specialCooldown;
+        public bool             flipSprite;
     }
 }
