@@ -15,7 +15,7 @@ MonoBehaviour:
   icon: {fileID: 2500569523642113903, guid: 947e3df2100e5404383b33c12bfb7781, type: 3}
   perkName: Critical Damage
   chance: 5
-  description: Each Attack Has A 5 Percent Chance To Deal 3X Damage
+  description: Each Attack Has A 15 Percent Chance To Deal 3X Damage
   priority: 0
-  criticalChance: 0.05
+  criticalChance: 0.15
   criticalMultiplier: 3
