@@ -23,13 +23,18 @@ namespace Managers
             {
                 Destroy(gameObject);
             }
+            ResetPerks();
+        }
+
+        public void ResetPerks()
+        {
+            _maxChance = 0;
             _availablePerks = new List<Perk>(perks);
-            foreach (var p in Instance._availablePerks)
+            foreach (var p in _availablePerks)
             {
                 _maxChance += p.chance;
             }
         }
-
         public static void UpdatePerks()
         {
             Instance._maxChance = 0;

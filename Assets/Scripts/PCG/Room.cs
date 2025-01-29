@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Difficulty;
 using Managers;
@@ -92,6 +93,11 @@ namespace PCG
             VisualizeGrid();
             PlaceEnemies();
             _isActive = true;
+        }
+
+        private void OnDestroy()
+        {
+            Deactivate();
         }
 
         public void Deactivate()

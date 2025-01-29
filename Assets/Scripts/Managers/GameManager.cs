@@ -27,13 +27,51 @@ namespace Managers
         private static GameManager _instance;
         //------private variables-----
         private List<Room>         _rooms;
-        
+
+        #region Util
         //WARNING Creates coupling between GameManager and Room
         public static StylePool GetStylePool(PcgStyle style)
         {
             return _instance.styles.Find(s => s.style == style);
         }
 
+        public void ResetGame()
+        {
+            Instance.player.ResetPlayer();
+            DestroyRooms();
+            PerkManager.Instance.ResetPerks();
+            Time.timeScale = 1.0f;
+        }
+        private void DestroyRooms()
+        {
+            foreach (var r in _rooms)
+            {
+                Destroy(r.gameObject);
+            }
+            _rooms = new List<Room>();
+        }
+        public void PauseGame()
+        {
+            Time.timeScale = 0.0f;
+            UIManager.Instance.TogglePauseUI();
+            IsGameRunning = false;
+        }
+        public void ResumeGame()
+        {
+            Time.timeScale = 1.0f;
+            UIManager.Instance.TogglePauseUI();
+            IsGameRunning = true;
+        }
+        public IEnumerator StartGame()
+        {
+            yield return new WaitUntil(() => styles.TrueForAll(s=>s.isReady) &&
+                                             enemies.isReady &&
+                                             projectiles.isReady);
+            level = 0;
+            room = 0;
+            StartCoroutine(LoadNextLevel());
+        }
+        #endregion        
         #region Level loading
         /// <summary>
         /// Coroutine to load the next level. Waits in the perk select screen
@@ -44,6 +82,8 @@ namespace Managers
             UIManager.ShowLevelLoadScreen();
             level++;
             room = 0;
+            if (_rooms != null)
+                DestroyRooms();
             _rooms = generator.GenerateRooms();
             yield return new WaitUntil(() => LoadTrigger);
             if (level == 1 && room == 0)
@@ -76,20 +116,7 @@ namespace Managers
             IsGameRunning = true;
         }
         #endregion
-
-        public void PauseGame()
-        {
-            Time.timeScale = 0.0f;
-            UIManager.Instance.TogglePauseUI();
-            IsGameRunning = false;
-        }
-
-        public void ResumeGame()
-        {
-            Time.timeScale = 1.0f;
-            UIManager.Instance.TogglePauseUI();
-            IsGameRunning = true;
-        }
+        #region Unity Event
         private void Awake()
         {
             if (_instance == null)
@@ -102,16 +129,6 @@ namespace Managers
                 Destroy(gameObject);
             }
         }
-        
-        public IEnumerator StartGame()
-        {
-            yield return new WaitUntil(() => styles.TrueForAll(s=>s.isReady) &&
-                                             enemies.isReady &&
-                                             projectiles.isReady);
-            level = 0;
-            room = 0;
-            StartCoroutine(LoadNextLevel());
-        }
         private void Update()
         {
             if (IsGameRunning && (!ActiveRoom.hasEnemy))
@@ -119,5 +136,6 @@ namespace Managers
                 StartCoroutine(room < 5 ? LoadNextRoom() : LoadNextLevel());
             }
         }
+        #endregion
     }
 }

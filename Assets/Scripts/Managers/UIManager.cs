@@ -76,7 +76,9 @@ namespace Managers
         }
         public void OnMenuClick()
         {
-            
+            GameManager.Instance.ResetGame();
+            pauseScreen.SetActive(false);
+            startScreen.SetActive(true);
         }
     }
 }

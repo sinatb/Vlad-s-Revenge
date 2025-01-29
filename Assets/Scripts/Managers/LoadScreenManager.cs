@@ -39,7 +39,6 @@ namespace Managers
             levelCompleteText.text = congratsText == "Welcome To The Prison" ?
                 congratsText :
                 "Level " + congratsText + " Complete!";
-            
             _animator.SetBool("StartLevelFade", true);
         }
 

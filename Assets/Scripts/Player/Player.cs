@@ -67,6 +67,15 @@ namespace Player
             _ui.avatar.sprite = _classData.model;
             _ui.avatar.color = Color.white;
         }
+
+        public void ResetPlayer()
+        {
+            Destroy(gameObject.GetComponent<PlayerController>());
+            Destroy(gameObject.GetComponent<SpriteRenderer>());
+            transform.GetChild(1).gameObject.SetActive(false);
+            blood = 0;
+            _set = false;
+        }
         private void SetController()
         {
             switch (_classData.name)
