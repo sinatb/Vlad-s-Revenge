@@ -98,7 +98,7 @@ namespace Managers
         }
         private void Update()
         {
-            if (IsGameRunning && (!ActiveRoom.hasEnemy || Input.GetKeyUp(KeyCode.X)))
+            if (IsGameRunning && (!ActiveRoom.hasEnemy))
             {
                 StartCoroutine(room < 5 ? LoadNextRoom() : LoadNextLevel());
             }

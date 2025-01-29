@@ -85,6 +85,7 @@ namespace Enemies
             if (_health <= 0)
             {
                 GameManager.Instance.player.AddBlood(_blood);
+                GameManager.Instance.ActiveRoom.KillEnemy();
                 gameObject.SetActive(false);
             }
         }

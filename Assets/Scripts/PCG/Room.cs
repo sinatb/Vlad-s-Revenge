@@ -11,6 +11,7 @@ namespace PCG
         // ReSharper disable once MemberCanBePrivate.Global
         public int[,]              Grid { get; private set; }
         public bool                hasEnemy = true;
+        private int                _enemyCount;
         private PcgStyle           _style;    
         private bool               _isActive;
         private DifficultySettings _difficulty;
@@ -68,6 +69,7 @@ namespace PCG
         {
             foreach (var v in _difficulty.enemies)
             {
+                _enemyCount += _difficulty.GetCount(v.enemy);
                 for (var i = 0; i < _difficulty.GetCount(v.enemy); i++)
                 {
                     var e = GameManager.Instance.enemies.GetPooledObject(v.enemy.enemyName);
@@ -76,6 +78,13 @@ namespace PCG
                     _usedTiles.Add(e);
                 }
             }
+        }
+
+        public void KillEnemy()
+        {
+            _enemyCount--;
+            if (_enemyCount <= 0)
+                hasEnemy = false;
         }
         public void Activate()
         {
