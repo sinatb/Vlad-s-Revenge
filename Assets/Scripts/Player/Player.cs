@@ -170,7 +170,13 @@ namespace Player
         }
         #endregion
         #region Utility Methods
-
+        
+        public Vector2Int GetLocation()
+        {
+            var x = (int)(transform.position.x);
+            var y = (int)(transform.position.y);
+            return new Vector2Int(x, y);
+        }
         public PlayerAttackData CalculateAttackData()
         {
             var data = new PlayerAttackData(_damage);

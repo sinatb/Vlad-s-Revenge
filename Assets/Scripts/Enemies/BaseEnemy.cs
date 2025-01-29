@@ -15,9 +15,11 @@ namespace Enemies
         private List<InstantEffect>              _instantEffects;
         private Dictionary<TimedEffect, float>   _timedEffects;
         public Image                             healthStatus;
+        private EnemyAI _ai;
         
         private void Awake()
         {
+            _ai = new EnemyAI();
             _instantEffects = new List<InstantEffect>();
             _timedEffects = new Dictionary<TimedEffect, float>();
         }
@@ -68,6 +70,7 @@ namespace Enemies
         {
             _health = data.health;
             _blood = data.bloodBonus;
+            _ai.Setup();
             _timedEffects.Clear();
             ApplyInstantEffects();
             healthStatus.color = Color.black;
@@ -85,5 +88,17 @@ namespace Enemies
                 gameObject.SetActive(false);
             }
         }
+
+        private void Update()
+        {
+            _ai.GeneratePathToPlayer(GetLocation());
+        }
+        private Vector2Int GetLocation()
+        {
+            var x = (int)(transform.position.x);
+            var y = (int)(transform.position.y);
+            return new Vector2Int(x, y);
+        }
+
     }
 }
