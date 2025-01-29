@@ -24,7 +24,9 @@ namespace Player.Hunter
             var prj = GetPooledProjectile("Hunter-Bolt") as HunterProjectile;
             prj!.Setup(dir, GameManager.Instance.settings.projectileSpeed);
             var player = GetComponent<Player>();
-            prj.SetPlayerAttackData(player.CalculateAttackData());
+            var data = player.CalculateAttackData();
+            data.AddDamage(40);
+            prj.SetPlayerAttackData(data);
             prj.MakeSpecial();
         }
 

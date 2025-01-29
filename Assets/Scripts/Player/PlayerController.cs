@@ -77,7 +77,6 @@ namespace Player
             }
             gameObject.transform.Translate(DirectionToVec2(dir)* speed);
         }
-
         protected Vector2 GetMouseVector()
         {
             var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -85,7 +84,6 @@ namespace Player
             var dir = (mouseWorldPos - transform.position).normalized;
             return dir;
         }
-
         protected PlayerProjectile GetPooledProjectile(string key)
         {
             var prj = GameManager.Instance.projectiles.GetPooledObject(key);
