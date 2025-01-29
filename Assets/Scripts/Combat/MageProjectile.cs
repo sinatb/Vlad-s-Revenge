@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Enemies;
+using Managers;
 using UnityEngine;
 
 namespace Combat
@@ -7,7 +8,7 @@ namespace Combat
     public class MageProjectile : PlayerProjectile
     {
         public int Aoe {get; set;}
-        protected override void OnDamageDealt(BaseEnemy enemy)
+        private void DamageNeighbouringEnemies(BaseEnemy enemy)
         {
             var position = new Vector2(
                     enemy.transform.position.x,
@@ -29,6 +30,26 @@ namespace Combat
                         ctr++;
                     }
                 }
+            }
+        }
+
+        protected override void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Wall"))
+            {
+                gameObject.SetActive(false);
+            }
+            else if (other.gameObject.CompareTag("Enemy"))
+            {
+                var enemy = other.gameObject.GetComponent<BaseEnemy>();
+                if (PlayerAttack.Effect != null)
+                {
+                    enemy.AddEffect(PlayerAttack.Effect);
+                }
+                enemy.TakeDamage(PlayerAttack.Damage);
+                DamageNeighbouringEnemies(enemy);
+                GameManager.Instance.player.Heal(PlayerAttack.Damage * PlayerAttack.LifeSteal);
+                gameObject.SetActive(false);
             }
         }
     }

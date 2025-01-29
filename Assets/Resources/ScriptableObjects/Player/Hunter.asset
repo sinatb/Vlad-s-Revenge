@@ -20,3 +20,4 @@ MonoBehaviour:
   damage: 30
   attackCooldown: 0.5
   specialCooldown: 10
+  flipSprite: 1

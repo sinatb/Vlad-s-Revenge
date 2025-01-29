@@ -12,11 +12,9 @@ namespace Player.Berserker
         private const float InvincibilityTime = 5.0f;
         public override void Attack(PlayerAttackData data)
         {
-            var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseWorldPos.z = 0f;
-            var dir = (mouseWorldPos - transform.position).normalized;
+            var dir = GetMouseVector();
+            
             var hits = Physics2D.OverlapCircleAll(transform.position, 2.5f);
-
             foreach (Collider2D hit in hits)
             {
                 var directionToTarget = 

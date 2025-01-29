@@ -27,22 +27,13 @@ namespace Player.Mage
 
         public override void Attack(PlayerAttackData data)
         {
-            //Calculating projectile direction
-            var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseWorldPos.z = 0f;
-            var dir = (mouseWorldPos - transform.position).normalized;
-            //Getting the projectile from the object pool and doing some basic setup
-            var prj = GameManager.Instance.projectiles.GetPooledObject("Mage-Bolt");
-            prj.SetActive(true);
-            prj.transform.position = transform.position;
-            var prjComp = prj.GetComponent<MageProjectile>();
-            prjComp.Setup(dir,
-                             GameManager.Instance.settings.projectileSpeed);
-            //Updating the data with the bonus values
-            prjComp.SetPlayerAttackData(data);
-            prjComp.PlayerAttack.AddDamage(_bonusDamage);
-            prjComp.PlayerAttack.AddLifeSteal(_bonusLifeSteal);
-            prjComp.Aoe = _bonusAoe;
+            var dir = GetMouseVector();
+            var prj = GetPooledProjectile("Mage-Bolt") as MageProjectile;
+            prj!.Setup(dir, GameManager.Instance.settings.projectileSpeed);
+            prj.SetPlayerAttackData(data);
+            prj.PlayerAttack.AddDamage(_bonusDamage);
+            prj.PlayerAttack.AddLifeSteal(_bonusLifeSteal);
+            prj.Aoe = _bonusAoe;
         }
 
         public override void Special()

@@ -77,6 +77,23 @@ namespace Player
             }
             gameObject.transform.Translate(DirectionToVec2(dir)* speed);
         }
+
+        protected Vector2 GetMouseVector()
+        {
+            var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorldPos.z = 0f;
+            var dir = (mouseWorldPos - transform.position).normalized;
+            return dir;
+        }
+
+        protected PlayerProjectile GetPooledProjectile(string key)
+        {
+            var prj = GameManager.Instance.projectiles.GetPooledObject(key);
+            prj.SetActive(true);
+            prj.transform.position = transform.position;
+            var prjComp = prj.GetComponent<PlayerProjectile>();
+            return prjComp;
+        }
         public abstract void Attack(PlayerAttackData data);
         public abstract void Special();
         public abstract void AdditionalControls();

@@ -1761,7 +1761,7 @@ MonoBehaviour:
   playerClasses:
   - {fileID: 11400000, guid: d1a9d12a8421ffb47b11801362369c1c, type: 2}
   - {fileID: 11400000, guid: 3e5284e9b78b40547b08b4becc4a4b2b, type: 2}
-  - {fileID: 11400000, guid: d1a9d12a8421ffb47b11801362369c1c, type: 2}
+  - {fileID: 11400000, guid: 72d6c606a4d32624e86a0ea3acde4021, type: 2}
   selectedClassData: {fileID: 0}
 --- !u!1 &336002979
 GameObject:
@@ -9781,6 +9781,8 @@ MonoBehaviour:
   prefabs:
   - key: Mage-Bolt
     obj: {fileID: 3845802436499342842, guid: 32abb10818fd5344dafbaa823b556260, type: 3}
+  - key: Hunter-Bolt
+    obj: {fileID: 8039050760082610970, guid: ef1f2a85914c51c488f206d6b85efa95, type: 3}
   count: 20
   isReady: 0
 --- !u!1 &1900008280

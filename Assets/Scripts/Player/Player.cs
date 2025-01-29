@@ -128,11 +128,7 @@ namespace Player
             #region Attack
             if (Input.GetMouseButtonUp(0) && _canAttack)
             {
-                var data = new PlayerAttackData(_damage);
-                foreach (var by in _onAttack)
-                {
-                    by.Value?.Invoke(this,data);
-                }
+                var data = CalculateAttackData();
                 _controller.Attack(data);
                 StartCoroutine(AttackCooldown());
             }
@@ -174,6 +170,16 @@ namespace Player
         }
         #endregion
         #region Utility Methods
+
+        public PlayerAttackData CalculateAttackData()
+        {
+            var data = new PlayerAttackData(_damage);
+            foreach (var by in _onAttack)
+            {
+                by.Value?.Invoke(this,data);
+            }
+            return data;
+        }
         public void Heal(float amount)
         {
             if (_health + amount < _maximumHealth)
