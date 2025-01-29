@@ -14,7 +14,11 @@ namespace Combat
         public TimedEffect Effect { get; private set; }
         public float LifeSteal { get; private set; }
         public float Damage { get; private set; }
-
+        
+        public void AddDamage(float value)
+        {
+            Damage += value;
+        }
         public void SetEffect(TimedEffect te)
         {
             Effect = te;

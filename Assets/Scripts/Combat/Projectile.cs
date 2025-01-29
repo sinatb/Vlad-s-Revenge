@@ -6,12 +6,10 @@ namespace Combat
     {
         private Vector2     _direction;
         private float       _speed;
-        protected float     Damage;
-        public void Setup(Vector2 dir, float speed, float damage)
+        public void Setup(Vector2 dir, float speed)
         {
             _direction = dir;
             _speed = speed;
-            Damage = damage;
         }
         private void Update()
         {

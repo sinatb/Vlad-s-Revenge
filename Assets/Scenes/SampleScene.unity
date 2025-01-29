@@ -2286,7 +2286,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1663355460, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
+  m_Sprite: {fileID: 777464425, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6678,6 +6678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blood: 0
+  isInvincible: 0
   _health: 0
 --- !u!61 &1291500593
 BoxCollider2D:
