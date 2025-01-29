@@ -89,6 +89,15 @@ namespace Player
         private void Update()
         {
             if (!_set) return;
+            if (Input.GetKeyUp(KeyCode.Escape))
+            {
+                if (GameManager.Instance.IsGameRunning)
+                    GameManager.Instance.PauseGame();
+                else
+                    GameManager.Instance.ResumeGame();
+            }
+            if (!GameManager.Instance.IsGameRunning)
+                return;
             #region Movement
             if (Input.GetKeyUp(KeyCode.A))
             {
@@ -138,6 +147,7 @@ namespace Player
                 StartCoroutine(_ui.SpecialCooldown(_classData.specialCooldown));
             }
             #endregion
+            
             _controller.AdditionalControls();
         }
         #region Stat Increase Methods

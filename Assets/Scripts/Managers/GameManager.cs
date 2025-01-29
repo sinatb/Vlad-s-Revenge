@@ -21,7 +21,8 @@ namespace Managers
         //------properties------------
         public Room ActiveRoom { get; private set; }
         public bool LoadTrigger { private get;  set; }
-        public bool IsGameRunning => !UIManager.IsInLoad && ActiveRoom != null;
+        public bool IsGameRunning { get; set; }
+
         public static GameManager Instance => _instance;
         private static GameManager _instance;
         //------private variables-----
@@ -56,6 +57,7 @@ namespace Managers
             player.transform.position = ActiveRoom.GetRandomFloor();
             yield return new WaitUntil(() => !UIManager.IsInPerkSelect);
             LoadTrigger = false;
+            IsGameRunning = true;
         }
         /// <summary>
         /// Loads next room in the level. 2 seconds delay before player can be in control
@@ -71,9 +73,23 @@ namespace Managers
             room++;
             player.transform.position = ActiveRoom.GetRandomFloor();
             LoadTrigger = false;
+            IsGameRunning = true;
         }
         #endregion
-      
+
+        public void PauseGame()
+        {
+            Time.timeScale = 0.0f;
+            UIManager.Instance.TogglePauseUI();
+            IsGameRunning = false;
+        }
+
+        public void ResumeGame()
+        {
+            Time.timeScale = 1.0f;
+            UIManager.Instance.TogglePauseUI();
+            IsGameRunning = true;
+        }
         private void Awake()
         {
             if (_instance == null)

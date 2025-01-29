@@ -10,9 +10,9 @@ namespace Managers
         [SerializeField] private GameObject      loadScreen;
         [SerializeField] private GameObject      startScreen;
         [SerializeField] private GameObject      heroSelectScreen;
+        [SerializeField] private GameObject      pauseScreen;
         public List<PlayerClassData>             playerClasses;
         public PlayerClassData                   selectedClassData;
-        public static bool IsInLoad;
         public static bool IsInPerkSelect;
         private static UIManager _instance;
         public static UIManager Instance => _instance;
@@ -32,13 +32,13 @@ namespace Managers
 
         public static void ShowRoomLoadScreen()
         {
-            IsInLoad = true;
+            GameManager.Instance.IsGameRunning = false;
             _instance.loadScreen.SetActive(true);
             _instance.loadScreen.GetComponent<LoadScreenManager>().SetupLoadScreen();
         }
         public static void ShowLevelLoadScreen()
         {
-            IsInLoad = true;
+            GameManager.Instance.IsGameRunning = false;
             IsInPerkSelect = true;
             _instance.loadScreen.SetActive(true);
             _instance.loadScreen.GetComponent<LoadScreenManager>().SetupLevelLoadScreen();
@@ -46,7 +46,6 @@ namespace Managers
         public static void HideRoomLoadScreen()
         {
             _instance.loadScreen.SetActive(false);
-            IsInLoad = false;
         }
 
         public void OnStartGameClick()
@@ -61,9 +60,23 @@ namespace Managers
             selectedClassData = playerClasses[index];
             StartCoroutine(GameManager.Instance.StartGame());
         }
+
+        public void TogglePauseUI()
+        {
+            pauseScreen.SetActive(!pauseScreen.activeInHierarchy);
+        }
         public void OnExitClick()
         {
             Application.Quit();
+        }
+        
+        public void OnResumeClick()
+        {
+            GameManager.Instance.ResumeGame();
+        }
+        public void OnMenuClick()
+        {
+            
         }
     }
 }

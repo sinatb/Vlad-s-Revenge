@@ -92,6 +92,8 @@ namespace Enemies
 
         private void Update()
         {
+            if (!GameManager.Instance.IsGameRunning)
+                return;
             _ai.GeneratePathToPlayer(GetLocation());
         }
         private Vector2Int GetLocation()
