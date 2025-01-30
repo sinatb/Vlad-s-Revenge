@@ -12,6 +12,10 @@ namespace Managers
         [SerializeField] private GameObject      heroSelectScreen;
         [SerializeField] private GameObject      pauseScreen;
         [SerializeField] private GameObject      loseScreen;
+        [SerializeField] private GameObject      evolutionScreen;
+        public TextMeshProUGUI                   damageCost;
+        public TextMeshProUGUI                   healthCost;
+        public TextMeshProUGUI                   evolutionBlood;
         public List<PlayerClassData>             playerClasses;
         public PlayerClassData                   selectedClassData;
         public static bool IsInPerkSelect;
@@ -86,6 +90,39 @@ namespace Managers
             pauseScreen.SetActive(false);
             loseScreen.SetActive(false);
             startScreen.SetActive(true);
+        }
+        public void OnEvolutionClick()
+        {
+            startScreen.SetActive(false);
+            healthCost.text = GameManager.Instance.healthUpgradeCost + " blood";
+            damageCost.text = GameManager.Instance.damageUpgradeCost + " blood";
+            evolutionBlood.text ="blood : " + GameManager.Instance.blood;
+            evolutionScreen.SetActive(true);
+        }
+        public void OnReturnClick()
+        {
+            startScreen.SetActive(true);
+            evolutionScreen.SetActive(false);
+        }
+        public void OnIncreaseClick(int stat)
+        {
+            if (stat == 1)
+            {
+                if (GameManager.Instance.blood >= GameManager.Instance.healthUpgradeCost)
+                {
+                    GameManager.Instance.blood -= (int)GameManager.Instance.healthUpgradeCost;
+                    GameManager.Instance.healthUpgradeCost *= 1.5f;
+                    GameManager.Instance.healthBonus += 5;
+                }
+            }else if (stat == 2)
+            {
+                if (GameManager.Instance.blood >= GameManager.Instance.damageUpgradeCost)
+                {
+                    GameManager.Instance.blood -= (int)GameManager.Instance.damageUpgradeCost;
+                    GameManager.Instance.healthUpgradeCost *= 1.5f;
+                    GameManager.Instance.damageBonus += 5;
+                }
+            }
         }
     }
 }

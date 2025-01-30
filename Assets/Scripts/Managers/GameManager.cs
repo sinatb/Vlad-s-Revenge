@@ -19,6 +19,10 @@ namespace Managers
         public Player.Player       player;
         public GameSettings        settings;
         public int                 blood;
+        public float               healthUpgradeCost;
+        public float               damageUpgradeCost;
+        public int                 healthBonus;
+        public int                 damageBonus;
         //------properties------------
         public Room ActiveRoom { get; private set; }
         public bool LoadTrigger { private get;  set; }
@@ -33,11 +37,13 @@ namespace Managers
 
         public void LoseGame()
         {
-            projectiles.ResetPool();
-            IsGameRunning = false;
-            blood += player.blood;
-            Time.timeScale = 0.0f;
             UIManager.ShowLoseScreen();
+            blood += player.blood;
+            Instance.player.ResetPlayer();
+            projectiles.ResetPool();
+            DestroyRooms();
+            IsGameRunning = false;
+            Time.timeScale = 0.0f;
         }
         //WARNING Creates coupling between GameManager and Room
         public static StylePool GetStylePool(PcgStyle style)
@@ -49,7 +55,9 @@ namespace Managers
         {
             Instance.player.ResetPlayer();
             DestroyRooms();
+            projectiles.ResetPool();
             PerkManager.Instance.ResetPerks();
+            IsGameRunning = false;
             Time.timeScale = 1.0f;
         }
         private void DestroyRooms()

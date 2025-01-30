@@ -43,12 +43,12 @@ namespace Player
         public void SetUpPlayer(PlayerClassData data)
         {
             _classData = data;
-            Health = _classData.maximumHealth;
-            MaximumHealth = Health;
+            Health = _classData.maximumHealth + GameManager.Instance.healthBonus;
+            MaximumHealth = Health + GameManager.Instance.healthBonus;
             _speed = _classData.maximumSpeed;
             _maximumSpeed = _speed;
-            _damage = _classData.damage;
-            _maximumDamage = _damage;
+            _damage = _classData.damage + GameManager.Instance.damageBonus;
+            _maximumDamage = _damage + GameManager.Instance.damageBonus;
             _perks = new List<Perk>();
             _onAttack = new SortedList<byte, Action<Player, PlayerAttackData>>();
             gameObject.AddComponent<SpriteRenderer>().sprite = _classData.model;
