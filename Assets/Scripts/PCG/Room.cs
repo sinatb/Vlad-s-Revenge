@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Difficulty;
 using Managers;
@@ -11,6 +10,7 @@ namespace PCG
     {
         // ReSharper disable once MemberCanBePrivate.Global
         public int[,]              Grid { get; private set; }
+        public int[,]              EnemyGrid { get; set; }
         public bool                hasEnemy = true;
         private int                _enemyCount;
         private PcgStyle           _style;    
@@ -21,6 +21,7 @@ namespace PCG
         public void Init(int[,] grid, PcgStyle style, DifficultySettings difficulty)
         {
             Grid = (int[,]) grid.Clone();
+            EnemyGrid = new int[Grid.GetLength(1), Grid.GetLength(0)];
             _style = style;
             _difficulty = difficulty;
             _usedTiles = new List<GameObject>();
@@ -102,6 +103,8 @@ namespace PCG
 
         public void Deactivate()
         {
+            if (_usedTiles == null)
+                return;
             foreach (var t in _usedTiles)
             {
                 t.SetActive(false);

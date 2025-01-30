@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Effects;
 using Managers;
@@ -10,13 +11,14 @@ namespace Enemies
     public class BaseEnemy : MonoBehaviour
     {
         public EnemyData                         data;
-        public float                            _health;
-        public int                              _blood;
+        private float                            _health;
+        private int                              _blood;
         private List<InstantEffect>              _instantEffects;
         private Dictionary<TimedEffect, float>   _timedEffects;
+        private EnemyAI                          _ai;
+        private bool                             _canMove = true;
+        private Vector2Int                       _enemyGridLocation;
         public Image                             healthStatus;
-        private EnemyAI _ai;
-        
         private void Awake()
         {
             _ai = new EnemyAI();
@@ -68,11 +70,19 @@ namespace Enemies
         }
         private void OnEnable()
         {
+            if (GameManager.Instance.ActiveRoom == null)
+                return;
+
+            var loc = GetGridLocation();
+            _enemyGridLocation = new Vector2Int(loc.x, loc.y);
+            GameManager.Instance.ActiveRoom.EnemyGrid[loc.y, loc.x] = 1;
+            
             _health = data.health;
             _blood = data.bloodBonus;
             _ai.Setup();
             _timedEffects.Clear();
             ApplyInstantEffects();
+            _canMove = true;
             healthStatus.color = Color.black;
         }
         public void TakeDamage(float damage)
@@ -86,15 +96,36 @@ namespace Enemies
             {
                 GameManager.Instance.player.AddBlood(_blood);
                 GameManager.Instance.ActiveRoom.KillEnemy();
+                GameManager.Instance.ActiveRoom.EnemyGrid[_enemyGridLocation.y, _enemyGridLocation.x] = 0;
                 gameObject.SetActive(false);
             }
         }
-
+        private IEnumerator MoveDelay()
+        {
+            yield return new WaitForSeconds(data.moveDelay);
+            _canMove = true;
+        }
         private void Update()
         {
             if (!GameManager.Instance.IsGameRunning)
                 return;
-            _ai.GeneratePathToPlayer(GetLocation());
+            var path = _ai.GeneratePathToPlayer(GetLocation());
+            if (_canMove && path.Count > 0)
+            {
+                GameManager.Instance.ActiveRoom.EnemyGrid[_enemyGridLocation.y, _enemyGridLocation.x] = 0;
+                transform.position = new Vector3(path[0].x, path[0].y, 0);
+                _enemyGridLocation = GetGridLocation();
+                GameManager.Instance.ActiveRoom.EnemyGrid[_enemyGridLocation.y, _enemyGridLocation.x] = 1;
+                _canMove = false;
+                StartCoroutine(MoveDelay());
+            }
+        }
+        private Vector2Int GetGridLocation()
+        {
+            var g = GameManager.Instance.ActiveRoom.Grid;
+            var x = (int)Math.Round(transform.position.x + (float)g.GetLength(0) / 2);
+            var y = (int)Math.Round(transform.position.y + (float)g.GetLength(1) / 2);
+            return new Vector2Int(x, y);
         }
         private Vector2Int GetLocation()
         {
