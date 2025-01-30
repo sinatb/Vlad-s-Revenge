@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8295ce6c276c4ab9bcff1307bad26b9c, type: 3}
   m_Name: Archer
   m_EditorClassIdentifier: 
+  moveDelay: 1
   enemyName: Archer
+  health: 50
+  bloodBonus: 15
+  healthUI:
+  - {fileID: -859259084, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
+  - {fileID: -1036756779, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
+  - {fileID: 1659816080, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
+  - {fileID: -1522103572, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
+  - {fileID: -1900703227, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
+  damage: 30
+  attackDelay: 5
+  range: 5

@@ -10,14 +10,18 @@ namespace PCG
     {
         // ReSharper disable once MemberCanBePrivate.Global
         public int[,]              Grid { get; private set; }
-        private PcgStyle           _style;      
+        public int[,]              EnemyGrid { get; set; }
+        public bool                hasEnemy = true;
+        private int                _enemyCount;
+        private PcgStyle           _style;    
         private bool               _isActive;
         private DifficultySettings _difficulty;
-        private List<GameObject> _usedTiles;
+        private List<GameObject>   _usedTiles;
  
         public void Init(int[,] grid, PcgStyle style, DifficultySettings difficulty)
         {
             Grid = (int[,]) grid.Clone();
+            EnemyGrid = new int[Grid.GetLength(1), Grid.GetLength(0)];
             _style = style;
             _difficulty = difficulty;
             _usedTiles = new List<GameObject>();
@@ -48,7 +52,7 @@ namespace PCG
             }
         }
 
-        private Vector3 GetRandomFloor()
+        public Vector3 GetRandomFloor()
         {
             var x = Random.Range(0,Grid.GetLength(0));
             var y = Random.Range(0,Grid.GetLength(1));
@@ -57,7 +61,6 @@ namespace PCG
                 y = Random.Range(0,Grid.GetLength(1));
                 x = Random.Range(0, Grid.GetLength(0));
             }
-
             return new Vector3(
                 x - (float)Grid.GetLength(0) / 2,
                 y - (float)Grid.GetLength(1) / 2,
@@ -68,6 +71,7 @@ namespace PCG
         {
             foreach (var v in _difficulty.enemies)
             {
+                _enemyCount += _difficulty.GetCount(v.enemy);
                 for (var i = 0; i < _difficulty.GetCount(v.enemy); i++)
                 {
                     var e = GameManager.Instance.enemies.GetPooledObject(v.enemy.enemyName);
@@ -77,6 +81,13 @@ namespace PCG
                 }
             }
         }
+
+        public void KillEnemy()
+        {
+            _enemyCount--;
+            if (_enemyCount <= 0)
+                hasEnemy = false;
+        }
         public void Activate()
         {
             if (_isActive) return;
@@ -85,8 +96,15 @@ namespace PCG
             _isActive = true;
         }
 
+        private void OnDestroy()
+        {
+            Deactivate();
+        }
+
         public void Deactivate()
         {
+            if (_usedTiles == null)
+                return;
             foreach (var t in _usedTiles)
             {
                 t.SetActive(false);

@@ -31,7 +31,14 @@ namespace Managers
             
             if (_animator == null)
                 _animator = GetComponent<Animator>();
-            levelCompleteText.text = "Level " + GameManager.Instance.level + " Complete!";
+            
+            var congratsText = GameManager.Instance.level == 0 ? 
+                "Welcome To The Prison" :
+                GameManager.Instance.level.ToString();
+            
+            levelCompleteText.text = congratsText == "Welcome To The Prison" ?
+                congratsText :
+                "Level " + congratsText + " Complete!";
             _animator.SetBool("StartLevelFade", true);
         }
 
