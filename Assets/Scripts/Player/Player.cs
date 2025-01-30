@@ -230,6 +230,7 @@ namespace Player
         }
         public void AddPerk(Perk p)
         {
+            Debug.Log(p.name);
             _ui.perks[_perks.Count].sprite = p.icon;
             _ui.perks[_perks.Count].color = Color.white;
             _perks.Add(p);

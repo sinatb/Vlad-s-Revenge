@@ -7377,7 +7377,7 @@ GameObject:
   - component: {fileID: 1291500595}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8626,7 +8626,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f2f1eabc35b9d8e4285c81f2e682c7ae, type: 2}
   - {fileID: 11400000, guid: 8882fbf0aa5e8164a8abeba1afae1a31, type: 2}
   - {fileID: 11400000, guid: 3876c60a46567924d97dc40b234c17fd, type: 2}
-  _availablePerks: []
 --- !u!1 &1562656074
 GameObject:
   m_ObjectHideFlags: 0
@@ -10518,6 +10517,8 @@ MonoBehaviour:
     obj: {fileID: 3845802436499342842, guid: 32abb10818fd5344dafbaa823b556260, type: 3}
   - key: Hunter-Bolt
     obj: {fileID: 8039050760082610970, guid: ef1f2a85914c51c488f206d6b85efa95, type: 3}
+  - key: Enemy-Bolt
+    obj: {fileID: 7591065708267856968, guid: 736b386accd378d4b9a66bf9ba074325, type: 3}
   count: 20
   isReady: 0
 --- !u!1 &1900008280

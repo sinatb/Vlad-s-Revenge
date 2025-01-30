@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6486294907944623266}
   - component: {fileID: 6304980875367653116}
   - component: {fileID: 3043066628377312976}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,9 +112,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2332393213237438453}
   - component: {fileID: 1414569889014164296}
-  - component: {fileID: 4864034984241267185}
   - component: {fileID: 7515232931267910476}
-  m_Layer: 0
+  - component: {fileID: 179305261042050447}
+  m_Layer: 3
   m_Name: DungeonCrawl_ProjectUtumnoTileset_414
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -178,8 +178,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -30287947
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: -2134665223, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -192,22 +192,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4864034984241267185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4158990515285099422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be5082d95a2a45fca6c755aff42cb67a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: a9e9d409fa93a9749b6f40a41e0fefad, type: 2}
-  _health: 0
-  _blood: 0
-  healthStatus: {fileID: 1407999046983516257}
 --- !u!60 &7515232931267910476
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -267,6 +251,20 @@ PolygonCollider2D:
       - {x: 0.35521054, y: 0.40130264}
       - {x: 0.08795524, y: 0.40347368}
   m_UseDelaunayMesh: 0
+--- !u!114 &179305261042050447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4158990515285099422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68582df5ddf549d8b77a89b329602317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: a9e9d409fa93a9749b6f40a41e0fefad, type: 2}
+  healthStatus: {fileID: 1407999046983516257}
 --- !u!1 &7873733307176477075
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,7 +276,7 @@ GameObject:
   - component: {fileID: 3280179962006651349}
   - component: {fileID: 2285503017217958014}
   - component: {fileID: 1407999046983516257}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}

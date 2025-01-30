@@ -1,11 +1,9 @@
-﻿using System;
-using Managers;
+﻿using Managers;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Enemies
 {
-    public class Warrior : BaseEnemy
+    public class MeleeEnemy : BaseEnemy
     {
         protected override Vector2Int TargetLocation()
         {
@@ -22,6 +20,17 @@ namespace Enemies
                 loc = GetGridLocation(p.x + xCoef, p.y + yCoef);
             }
             return new Vector2Int(p.x + xCoef, p.y + yCoef);
+        }
+
+        protected override void Attack()
+        {
+            GameManager.Instance.player.TakeDamage(data.damage);
+        }
+
+        protected override AIState GetState()
+        {
+            var dist = (transform.position - GameManager.Instance.player.transform.position).magnitude;
+            return dist < 2.0f ? AIState.Attack : AIState.Move;
         }
     }
 }

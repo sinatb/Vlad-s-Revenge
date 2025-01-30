@@ -17,6 +17,7 @@ namespace Enemies
         private Dictionary<TimedEffect, float>   _timedEffects;
         private EnemyAI                          _ai;
         private bool                             _canMove = true;
+        private bool                             _canAttack = true;
         private Vector2Int                       _enemyGridLocation;
         public Image                             healthStatus;
         private void Awake()
@@ -83,6 +84,7 @@ namespace Enemies
             _timedEffects.Clear();
             ApplyInstantEffects();
             _canMove = true;
+            _canAttack = true;
             healthStatus.color = Color.black;
         }
         public void TakeDamage(float damage)
@@ -105,22 +107,39 @@ namespace Enemies
             yield return new WaitForSeconds(data.moveDelay);
             _canMove = true;
         }
+
+        private IEnumerator AttackDelay()
+        {
+            yield return new WaitForSeconds(data.attackDelay);
+            _canAttack = true;
+        }
         private void Update()
         {
             if (!GameManager.Instance.IsGameRunning)
                 return;
-            var path = _ai.GeneratePathToPlayer(GetLocation());
-            if (_canMove && path.Count > 0)
+            var state = GetState();
+            if (state == AIState.Move)
             {
-                GameManager.Instance.ActiveRoom.EnemyGrid[_enemyGridLocation.y, _enemyGridLocation.x] = 0;
-                transform.position = new Vector3(path[0].x, path[0].y, 0);
-                _enemyGridLocation = GetGridLocation();
-                GameManager.Instance.ActiveRoom.EnemyGrid[_enemyGridLocation.y, _enemyGridLocation.x] = 1;
-                _canMove = false;
-                StartCoroutine(MoveDelay());
+                var path = _ai.GeneratePathToPlayer(GetLocation());
+                if (_canMove && path.Count > 0)
+                {
+                    GameManager.Instance.ActiveRoom.EnemyGrid[_enemyGridLocation.y, _enemyGridLocation.x] = 0;
+                    transform.position = new Vector3(path[0].x, path[0].y, 0);
+                    _enemyGridLocation = GetGridLocation();
+                    GameManager.Instance.ActiveRoom.EnemyGrid[_enemyGridLocation.y, _enemyGridLocation.x] = 1;
+                    _canMove = false;
+                    StartCoroutine(MoveDelay());
+                }
+            }
+            else
+            {
+                if (!_canAttack) return;
+                Attack();
+                _canAttack = false;
+                StartCoroutine(AttackDelay());
             }
         }
-        protected Vector2Int GetGridLocation()
+        private Vector2Int GetGridLocation()
         {
             var g = GameManager.Instance.ActiveRoom.Grid;
             var x = (int)Math.Round(transform.position.x + (float)g.GetLength(0) / 2);
@@ -132,13 +151,14 @@ namespace Enemies
             var g = GameManager.Instance.ActiveRoom.Grid;
             return new Vector2Int(x + g.GetLength(0) / 2, y + g.GetLength(1) / 2);
         }
-        protected Vector2Int GetLocation()
+        private Vector2Int GetLocation()
         {
             var x = (int)(transform.position.x);
             var y = (int)(transform.position.y);
             return new Vector2Int(x, y);
         }
-        protected abstract Vector2Int TargetLocation(); 
-
+        protected abstract Vector2Int TargetLocation();
+        protected abstract void Attack();
+        protected abstract AIState GetState();
     }
 }

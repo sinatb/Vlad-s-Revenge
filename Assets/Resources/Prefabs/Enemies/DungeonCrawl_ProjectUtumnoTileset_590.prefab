@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1788599194231732198}
   - component: {fileID: 8467632319390316289}
-  - component: {fileID: 48477503524123514}
   - component: {fileID: 1220011195913012381}
-  m_Layer: 0
+  - component: {fileID: 7992874538412790037}
+  m_Layer: 3
   m_Name: DungeonCrawl_ProjectUtumnoTileset_590
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -30287947
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: -1208598051, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -90,22 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &48477503524123514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5603364107898177618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 289b161965a04ea6afece4e3fe895396, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 40c5302eacee1cf449e1ed9dfd702f44, type: 2}
-  _health: 0
-  _blood: 0
-  healthStatus: {fileID: 4242077569093996308}
 --- !u!60 &1220011195913012381
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -168,6 +152,20 @@ PolygonCollider2D:
       - {x: 0.32605296, y: 0.026336182}
       - {x: 0.36367685, y: 0.22484048}
   m_UseDelaunayMesh: 0
+--- !u!114 &7992874538412790037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5603364107898177618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68582df5ddf549d8b77a89b329602317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 40c5302eacee1cf449e1ed9dfd702f44, type: 2}
+  healthStatus: {fileID: 4242077569093996308}
 --- !u!1 &6067505081971516831
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +177,7 @@ GameObject:
   - component: {fileID: 5409723823592792213}
   - component: {fileID: 2461850763761450814}
   - component: {fileID: 4242077569093996308}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +253,7 @@ GameObject:
   - component: {fileID: 2254001284413466731}
   - component: {fileID: 6815799579802086821}
   - component: {fileID: 1129247151996824483}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
