@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d80d83910a4f3483de14dcec13d0d3, type: 3}
+  m_Name: Hunter
+  m_EditorClassIdentifier: 
+  className: Hunter
+  model: {fileID: -1626788591, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
+  special: {fileID: 6643682479915432141, guid: a3d7af2bd88038c43941a404c55382fd, type: 3}
+  maximumHealth: 100
+  maximumSpeed: 2
+  damage: 30
+  attackCooldown: 0.5
+  specialCooldown: 10
+  flipSprite: 1

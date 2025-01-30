@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8295ce6c276c4ab9bcff1307bad26b9c, type: 3}
+  m_Name: Archer
+  m_EditorClassIdentifier: 
+  moveDelay: 1
+  enemyName: Archer
+  health: 50
+  bloodBonus: 15
+  healthUI:
+  - {fileID: -859259084, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
+  - {fileID: -1036756779, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
+  - {fileID: 1659816080, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
+  - {fileID: -1522103572, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
+  - {fileID: -1900703227, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
+  damage: 30
+  attackDelay: 5
+  range: 5

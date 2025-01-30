@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1511c540199f4f149cef66d99c86617b, type: 3}
+  m_Name: VenomAttackPerk
+  m_EditorClassIdentifier: 
+  icon: {fileID: -5150807758560243882, guid: d05b826ba4b39e540a7117b9500574c5, type: 3}
+  perkName: 'Venomous Touch  '
+  chance: 10
+  description: Enemies Take poison damage for 3 seconds (once each second)
+  priority: 2
+  venomEffect: {fileID: 11400000, guid: c3af3c72f508b3e4db0abeea51fe6133, type: 2}
