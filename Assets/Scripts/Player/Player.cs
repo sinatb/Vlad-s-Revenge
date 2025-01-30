@@ -227,7 +227,8 @@ namespace Player
                 Health -= amount;
             else
             {
-                //TODO Game Over
+                Health = 0;
+                GameManager.Instance.LoseGame();
             }
         }
         public void AddPerk(Perk p)

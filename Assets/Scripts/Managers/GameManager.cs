@@ -18,6 +18,7 @@ namespace Managers
         public List<StylePool>     styles;
         public Player.Player       player;
         public GameSettings        settings;
+        public int                 blood;
         //------properties------------
         public Room ActiveRoom { get; private set; }
         public bool LoadTrigger { private get;  set; }
@@ -29,6 +30,15 @@ namespace Managers
         private List<Room>         _rooms;
 
         #region Util
+
+        public void LoseGame()
+        {
+            projectiles.ResetPool();
+            IsGameRunning = false;
+            blood += player.blood;
+            Time.timeScale = 0.0f;
+            UIManager.ShowLoseScreen();
+        }
         //WARNING Creates coupling between GameManager and Room
         public static StylePool GetStylePool(PcgStyle style)
         {
@@ -67,6 +77,7 @@ namespace Managers
             yield return new WaitUntil(() => styles.TrueForAll(s=>s.isReady) &&
                                              enemies.isReady &&
                                              projectiles.isReady);
+            IsGameRunning = true;
             level = 0;
             room = 0;
             StartCoroutine(LoadNextLevel());

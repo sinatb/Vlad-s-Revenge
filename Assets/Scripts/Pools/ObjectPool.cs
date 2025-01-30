@@ -35,6 +35,17 @@ namespace Pools
                 }
             }
         }
+
+        public void ResetPool()
+        {
+            foreach (var slp in _pool)
+            {
+                foreach (var e in slp.Value)
+                {
+                    e.SetActive(false);
+                }
+            }
+        }
         private void Awake()
         {
             _pool = new Dictionary<string, List<GameObject>>();

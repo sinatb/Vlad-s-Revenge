@@ -11,6 +11,7 @@ namespace Managers
         [SerializeField] private GameObject      startScreen;
         [SerializeField] private GameObject      heroSelectScreen;
         [SerializeField] private GameObject      pauseScreen;
+        [SerializeField] private GameObject      loseScreen;
         public List<PlayerClassData>             playerClasses;
         public PlayerClassData                   selectedClassData;
         public static bool IsInPerkSelect;
@@ -47,29 +48,34 @@ namespace Managers
         {
             _instance.loadScreen.SetActive(false);
         }
-
         public void OnStartGameClick()
         {
             startScreen.SetActive(false);
             heroSelectScreen.SetActive(true);
         }
-
         public void OnSelectHeroClick(int index)
         {
             heroSelectScreen.SetActive(false);
             selectedClassData = playerClasses[index];
             StartCoroutine(GameManager.Instance.StartGame());
         }
-
         public void TogglePauseUI()
         {
             pauseScreen.SetActive(!pauseScreen.activeInHierarchy);
+        }
+        public static void ShowLoseScreen()
+        {
+            //code getting shitier :)
+            Instance.loseScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
+                "Level " + GameManager.Instance.level + "-" + GameManager.Instance.room;
+            Instance.loseScreen.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
+                "Blood " + GameManager.Instance.player.blood;
+            Instance.loseScreen.SetActive(true);
         }
         public void OnExitClick()
         {
             Application.Quit();
         }
-        
         public void OnResumeClick()
         {
             GameManager.Instance.ResumeGame();
@@ -78,6 +84,7 @@ namespace Managers
         {
             GameManager.Instance.ResetGame();
             pauseScreen.SetActive(false);
+            loseScreen.SetActive(false);
             startScreen.SetActive(true);
         }
     }
