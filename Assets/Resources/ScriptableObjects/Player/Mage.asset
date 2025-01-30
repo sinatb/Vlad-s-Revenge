@@ -18,6 +18,6 @@ MonoBehaviour:
   maximumHealth: 50
   maximumSpeed: 2
   damage: 10
-  attackCooldown: 1
+  attackCooldown: 0.5
   specialCooldown: 2
   flipSprite: 0

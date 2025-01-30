@@ -53,7 +53,7 @@ namespace Enemies
             prj.transform.position = transform.position;
             var prjcomp = prj.GetComponent<EnemyProjectile>();
             var dir = (GameManager.Instance.player.transform.position-transform.position).normalized;
-            prjcomp.Setup(dir,5.0f);
+            prjcomp.Setup(dir,2.0f);
             prjcomp.damage = data.damage;
         }
 
@@ -64,7 +64,7 @@ namespace Enemies
                 return AIState.Move;
             }
             var action = Random.Range(0.0f, 1.0f);
-            return action > 0.6f ? AIState.Attack : AIState.Move;
+            return action > 0.8f ? AIState.Attack : AIState.Move;
         }
     }
 }

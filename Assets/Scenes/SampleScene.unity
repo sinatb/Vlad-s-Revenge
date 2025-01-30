@@ -4787,7 +4787,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000b5d731fe
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -7413,7 +7413,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blood: 0
   isInvincible: 0
-  _health: 0
 --- !u!61 &1291500593
 BoxCollider2D:
   m_ObjectHideFlags: 0

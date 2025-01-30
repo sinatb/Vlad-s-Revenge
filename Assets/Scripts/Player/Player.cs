@@ -21,9 +21,10 @@ namespace Player
         public int               blood;
         public bool              isInvincible;
         public List<Perk>        Perks => _perks;
+        public float             Health { private set; get; }
+        public float             MaximumHealth { private set; get; }
         //------private variables-----
-        public float                                              _health;
-        private float                                             _maximumHealth;
+
         private int                                               _speed;
         private int                                               _maximumSpeed;
         private float                                             _damage;
@@ -42,8 +43,8 @@ namespace Player
         public void SetUpPlayer(PlayerClassData data)
         {
             _classData = data;
-            _health = _classData.maximumHealth;
-            _maximumHealth = _health;
+            Health = _classData.maximumHealth;
+            MaximumHealth = Health;
             _speed = _classData.maximumSpeed;
             _maximumSpeed = _speed;
             _damage = _classData.damage;
@@ -72,6 +73,7 @@ namespace Player
         {
             Destroy(gameObject.GetComponent<PlayerController>());
             Destroy(gameObject.GetComponent<SpriteRenderer>());
+            _ui.mageSpecialUI.SetActive(false);
             transform.GetChild(1).gameObject.SetActive(false);
             blood = 0;
             _set = false;
@@ -166,8 +168,8 @@ namespace Player
         /// <param name="amount">A percentage between 0.0 and 1.0</param>
         public void IncreaseMaximumHealth(float amount)
         {
-            _maximumHealth *= (1 + amount);
-            _health = _maximumHealth;
+            MaximumHealth *= (1 + amount);
+            Health = MaximumHealth;
         }
         /// <summary>
         /// Increases the player's speed by a flat amount
@@ -207,13 +209,13 @@ namespace Player
         }
         public void Heal(float amount)
         {
-            if (_health + amount < _maximumHealth)
+            if (Health + amount < MaximumHealth)
             {
-                _health += amount;
+                Health += amount;
             }
             else
             {
-                _health = _maximumHealth;
+                Health = MaximumHealth;
             }
         }
 
@@ -221,8 +223,8 @@ namespace Player
         {
             if (isInvincible)
                 return;
-            if (_health - amount > 0)
-                _health -= amount;
+            if (Health - amount > 0)
+                Health -= amount;
             else
             {
                 //TODO Game Over
@@ -230,7 +232,6 @@ namespace Player
         }
         public void AddPerk(Perk p)
         {
-            Debug.Log(p.name);
             _ui.perks[_perks.Count].sprite = p.icon;
             _ui.perks[_perks.Count].color = Color.white;
             _perks.Add(p);

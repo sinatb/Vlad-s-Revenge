@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Player.Mage;
 using Player.Util;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,15 +10,23 @@ namespace Player
 {
     public class PlayerUI : MonoBehaviour
     {
-        public Slider      health;
-        public Image       avatar;
-        public List<Image> perks;
-        public Image       coolDownImage;
-        public Image       specialImage;
-        public GameObject  mageSpecialUI;
-        public Sprite      san;
-        public Sprite      vis;
-        public Sprite      ful;
+        public Slider           health;
+        public TextMeshProUGUI  blood;
+        public Image            avatar;
+        public List<Image>      perks;
+        public Image            coolDownImage;
+        public Image            specialImage;
+        public GameObject       mageSpecialUI;
+        public Sprite           san;
+        public Sprite           vis;
+        public Sprite           ful;
+        private Player          _player;
+
+        private void Start()
+        {
+            _player = GetComponent<Player>();
+        }
+
         public bool        CanSpecial { get; private set; } = true;
         public IEnumerator<WaitForSeconds> SpecialCooldown(float time)
         {
@@ -53,6 +63,13 @@ namespace Player
                         break;
                 }
             }
+        }
+
+        private void Update()
+        {
+            if (_player.MaximumHealth != 0)
+                health.value = _player.Health/_player.MaximumHealth;
+            blood.text = "Blood : " + _player.blood;
         }
     }
 }
