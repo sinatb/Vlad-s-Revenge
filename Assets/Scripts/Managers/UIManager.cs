@@ -13,6 +13,7 @@ namespace Managers
         [SerializeField] private GameObject      pauseScreen;
         [SerializeField] private GameObject      loseScreen;
         [SerializeField] private GameObject      evolutionScreen;
+        [SerializeField] private GameObject      winScreen;
         public TextMeshProUGUI                   damageCost;
         public TextMeshProUGUI                   healthCost;
         public TextMeshProUGUI                   evolutionBlood;
@@ -89,6 +90,7 @@ namespace Managers
             GameManager.Instance.ResetGame();
             pauseScreen.SetActive(false);
             loseScreen.SetActive(false);
+            winScreen.SetActive(false);
             startScreen.SetActive(true);
         }
         public void OnEvolutionClick()
@@ -123,6 +125,13 @@ namespace Managers
                     GameManager.Instance.damageBonus += 5;
                 }
             }
+        }
+
+        public static void ShowWinScreen()
+        {
+            Instance.winScreen.SetActive(true);
+            Instance.winScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
+                "+ " + GameManager.Instance.player.blood + " blood";
         }
     }
 }

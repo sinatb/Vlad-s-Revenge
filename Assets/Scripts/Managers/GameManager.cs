@@ -35,6 +35,16 @@ namespace Managers
 
         #region Util
 
+        private void WinGame()
+        {
+            UIManager.ShowWinScreen();
+            blood += player.blood;
+            Instance.player.ResetPlayer();
+            projectiles.ResetPool();
+            DestroyRooms();
+            IsGameRunning = false;
+            Time.timeScale = 0.0f;
+        }
         public void LoseGame()
         {
             UIManager.ShowLoseScreen();
@@ -98,6 +108,11 @@ namespace Managers
         /// <returns></returns>
         private IEnumerator LoadNextLevel()
         {
+            if (level == 5)
+            {
+                WinGame();
+                yield break;
+            }
             UIManager.ShowLevelLoadScreen();
             level++;
             room = 0;
