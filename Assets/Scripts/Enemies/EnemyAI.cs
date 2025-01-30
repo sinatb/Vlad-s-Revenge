@@ -8,16 +8,17 @@ namespace Enemies
 {
     public class EnemyAI 
     {
-        Pathfinder<Vector2Int> _pathfinder;
-
-        public void Setup()
+        Pathfinder<Vector2Int>   _pathfinder;
+        private Func<Vector2Int> _targetSelect;
+        public void Setup(Func<Vector2Int> targetSelect)
         {
+            _targetSelect = targetSelect;
             _pathfinder = new Pathfinder<Vector2Int>(GetDistance, GetNeighbourNodes, 1000);
         }
         public List<Vector2Int> GeneratePathToPlayer(Vector2Int currentPosition)
         {
             if (_pathfinder.GenerateAstarPath(currentPosition,
-                    GameManager.Instance.player.GetLocation(),
+                    _targetSelect.Invoke(),
                     out var path)
                 )
             {

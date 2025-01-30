@@ -22,3 +22,6 @@ MonoBehaviour:
   - {fileID: 1659816080, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
   - {fileID: -1522103572, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
   - {fileID: -1900703227, guid: 8000849ed3545f94fa879f00f5b9d318, type: 3}
+  damage: 30
+  attackDelay: 0.5
+  range: 5

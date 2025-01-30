@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Enemies
 {
-    public class BaseEnemy : MonoBehaviour
+    public abstract class BaseEnemy : MonoBehaviour
     {
         public EnemyData                         data;
         private float                            _health;
@@ -79,7 +79,7 @@ namespace Enemies
             
             _health = data.health;
             _blood = data.bloodBonus;
-            _ai.Setup();
+            _ai.Setup(TargetLocation);
             _timedEffects.Clear();
             ApplyInstantEffects();
             _canMove = true;
@@ -120,19 +120,25 @@ namespace Enemies
                 StartCoroutine(MoveDelay());
             }
         }
-        private Vector2Int GetGridLocation()
+        protected Vector2Int GetGridLocation()
         {
             var g = GameManager.Instance.ActiveRoom.Grid;
             var x = (int)Math.Round(transform.position.x + (float)g.GetLength(0) / 2);
             var y = (int)Math.Round(transform.position.y + (float)g.GetLength(1) / 2);
             return new Vector2Int(x, y);
         }
-        private Vector2Int GetLocation()
+        protected Vector2Int GetGridLocation(int x, int y)
+        {
+            var g = GameManager.Instance.ActiveRoom.Grid;
+            return new Vector2Int(x + g.GetLength(0) / 2, y + g.GetLength(1) / 2);
+        }
+        protected Vector2Int GetLocation()
         {
             var x = (int)(transform.position.x);
             var y = (int)(transform.position.y);
             return new Vector2Int(x, y);
         }
+        protected abstract Vector2Int TargetLocation(); 
 
     }
 }
